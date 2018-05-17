@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Button } from "react-bootstrap";
 
 // first we will make a new context
 const MyContext = React.createContext();
@@ -8,17 +9,19 @@ class MyProvider extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      data: {}
+    };
 
     // this.updateData = this.updateData.bind(this);
   }
 
   // get data
   getData = async => {
-    // let query = this.state.value;
-    // fetch("https://api.scryfall.com/cards/named?" + "fuzzy=" + query)
-    //   .then(response => response.json())
-    //   .then(data => this.setState({ card: data }));
+    let query = this.state.value;
+    fetch("https://api.iextrading.com/1.0/stock/market/batch?symbols=aapl,fb,tsla,goog,msft,gild&types=quote,news,chart&range=1m&last=5")
+      .then(response => response.json())
+      .then(data => this.setState({ data: data }));
   };
 
   componentDidMount() {
@@ -41,12 +44,19 @@ class MyProvider extends Component {
 class App extends Component {
   render() {
     return (
+      <MyProvider>
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">Stock Quote Generator</h1>
         </header>
-        <p className="App-intro">Hello World!</p>
+        <div>
+        <input></input>
+        </div>
+        <div>
+        <Button>Submit</Button>
+        </div>
       </div>
+      </MyProvider>
     );
   }
 }
