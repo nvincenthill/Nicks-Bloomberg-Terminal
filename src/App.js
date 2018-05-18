@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Well } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import Header from "./Header";
 import Footer from "./Footer";
 import DataWell from "./DataWell";
@@ -14,25 +14,27 @@ class MyProvider extends Component {
     super(props);
 
     this.state = {
-      data: [],
-      dataDisplayed: false
+      currentQuote: {},
+      dataDisplayed: false,
+      value: "",
+      universe: [],
+      displayedStock: "AAPL"
     };
 
-    // this.updateData = this.updateData.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   // get data on a single ticker
   getData = async => {
     let query = this.state.value;
-
-    fetch("https://api.iextrading.com/1.0/ref-data/symbols")
+    let endpoint = `https://api.iextrading.com/1.0/stock/${query}/quote`
+    fetch(endpoint)
       .then(response => response.json())
       .then(data => this.addData(data));
   };
 
   // get universe of options from IEX
   getUniverse = async => {
-    let query = this.state.value;
     let endpoint = "https://api.iextrading.com/1.0/ref-data/symbols"
     fetch(endpoint)
       .then(response => response.json())
@@ -41,9 +43,33 @@ class MyProvider extends Component {
 
   // add data to state
   addData = data => {
-    let joined = this.state.data.concat(data);
-    this.setState({ data: joined });
+    this.setState({ currentQuote: data });
   };
+
+  // find stock by name or ticker
+  findMatches = (wordToMatch, stocks) => {
+    return stocks.filter(stock => {
+      // here we need to figure out if the name or ticker matches what was searched
+      const regex = new RegExp(wordToMatch, 'gi');
+      return stock.symbol.match(regex) || stock.name.match(regex)
+    });
+  };
+
+  //display matching stocks
+  displayMatches = () => {
+    let matchArray = this.findMatches(this.state.value, this.state.universe);
+    console.log(matchArray);
+  }
+
+  handleChange = (event) => {
+    this.setState({ value: event.target.value });
+    this.displayMatches();
+  }
+
+  handleSubmit = () => {
+    this.getData();
+    this.setState({ dataDisplayed: true });
+  }
 
   // get universe on page load
   componentWillMount() {
@@ -55,7 +81,9 @@ class MyProvider extends Component {
       <MyContext.Provider
         value={{
           state: this.state,
-          getData: this.getData
+          getData: this.getData,
+          handleChange: this.handleChange,
+          handleSubmit: this.handleSubmit
         }}
       >
         {this.props.children}
@@ -77,13 +105,19 @@ class App extends Component {
               </Collapse>
             )}
           </MyContext.Consumer>
+          <MyContext.Consumer>
+            {context => (
+          <React.Fragment>
           <div>
-            <input type="text" class="search" placeholder="ex. AAPL" />
-          </div>
-          <div>
-            <Button className="submit-button">Submit</Button>
+            <input type="text" className="search" placeholder="ex. AAPL" onChange={context.handleChange}/>
           </div>
 
+          <div>
+            <Button className="submit-button" onClick={context.handleSubmit}>Submit</Button>
+          </div>
+          </React.Fragment>
+            )}
+          </MyContext.Consumer>
           <Footer />
         </div>
       </MyProvider>
@@ -92,3 +126,4 @@ class App extends Component {
 }
 
 export default App;
+export { MyContext };

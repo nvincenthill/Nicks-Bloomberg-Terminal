@@ -9,12 +9,16 @@
 
 .App-header {
   background-color: #222;
-  padding: 20px;
+  padding: 2rem;
   color: white;
+  margin-bottom: 1rem;
+  margin-top: 0;
 }
 
 .App-title {
-  font-size: 1.5em;
+  /*font-size: 1.5em;*/
+  margin-bottom: 0;
+  margin-top: 0;
 }
 
 .App-intro {
@@ -34,11 +38,12 @@ body {
 input.search {
   margin: 0;
   text-align: center;
-  width: 75%;
+  width: 50%;
   z-index: 2;
-  font-size: 3em;
+  font-size: 2em;
   margin-bottom: 1rem;
   margin-top: 1rem;
+  caret-color: transparent;
 }
 
 .submit-button {

@@ -1,5 +1,6 @@
 import React from "react";
-import { Button, Well } from "react-bootstrap";
+import { Well } from "react-bootstrap";
+import { MyContext } from "./App.js";
 
 class DataWell extends React.Component {
   componentWillMount() {}
@@ -8,23 +9,20 @@ class DataWell extends React.Component {
   componentWillUnmount() {}
   render() {
     return (
-      <Well>
-        <p> Submit a ticker </p>
-        <div>
-          <h2>Name</h2>
-          <h3>Price</h3>
-          <p>Chg on Day</p>
-          <p>Mrk Cap</p>
-          <p>P/E</p>
-          <ul>
-            <li> </li>
-            <li> </li>
-            <li> </li>
-            <li> </li>
-            <li> </li>
-          </ul>
-        </div>
-      </Well>
+      <MyContext.Consumer>
+        {context => (
+          <Well>
+            <div>
+              <h2>{context.state.displayedStock}</h2>
+              <h2>{context.state.currentQuote.companyName}</h2>
+              <h3>${context.state.currentQuote.iexRealtimePrice}</h3>
+              <p>{context.state.currentQuote.changePercent * 100}% </p>
+              <p>${Math.round(context.state.currentQuote.marketCap / 1000000000)}B</p>
+              <p>{context.state.currentQuote.peRatio}</p>
+            </div>
+          </Well>
+        )}
+      </MyContext.Consumer>
     );
   }
 }
