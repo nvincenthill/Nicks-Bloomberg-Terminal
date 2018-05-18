@@ -27,3 +27,21 @@ body {
   font-family: sans-serif;
 }
 
+.well {
+  margin-bottom: 0;
+}
+
+input.search {
+  margin: 0;
+  text-align: center;
+  width: 75%;
+  z-index: 2;
+  font-size: 3em;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+
+.submit-button {
+  margin-bottom: 1rem;
+  /*margin-top: 1rem;*/
+}

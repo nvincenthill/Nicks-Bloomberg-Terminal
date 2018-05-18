@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Well } from "react-bootstrap";
 import Header from "./Header";
 import Footer from "./Footer";
+import DataWell from "./DataWell";
+import { Collapse } from "react-collapse";
 
 // first we will make a new context
 const MyContext = React.createContext();
@@ -12,29 +14,48 @@ class MyProvider extends Component {
     super(props);
 
     this.state = {
-      data: {}
+      data: [],
+      dataDisplayed: false
     };
 
     // this.updateData = this.updateData.bind(this);
   }
 
-  // get data
+  // get data on a single ticker
   getData = async => {
     let query = this.state.value;
-    fetch("https://api.iextrading.com/1.0/stock/market/batch?symbols=aapl,fb,tsla,goog,msft,gild&types=quote,news,chart&range=1m&last=5")
+
+    fetch("https://api.iextrading.com/1.0/ref-data/symbols")
       .then(response => response.json())
-      .then(data => this.setState({ data: data }));
+      .then(data => this.addData(data));
   };
 
-  componentDidMount() {
-    this.getData();
+  // get universe of options from IEX
+  getUniverse = async => {
+    let query = this.state.value;
+    let endpoint = "https://api.iextrading.com/1.0/ref-data/symbols"
+    fetch(endpoint)
+      .then(response => response.json())
+      .then(data => this.setState({ universe: data }));
+  };
+
+  // add data to state
+  addData = data => {
+    let joined = this.state.data.concat(data);
+    this.setState({ data: joined });
+  };
+
+  // get universe on page load
+  componentWillMount() {
+    this.getUniverse();
   }
 
   render() {
     return (
       <MyContext.Provider
         value={{
-          state: this.state
+          state: this.state,
+          getData: this.getData
         }}
       >
         {this.props.children}
@@ -47,16 +68,24 @@ class App extends Component {
   render() {
     return (
       <MyProvider>
-      <div className="App">
-        <Header />
-        <div>
-        <input></input>
+        <div className="App">
+          <Header />
+          <MyContext.Consumer>
+            {context => (
+              <Collapse isOpened={context.state.dataDisplayed}>
+                <DataWell />
+              </Collapse>
+            )}
+          </MyContext.Consumer>
+          <div>
+            <input type="text" class="search" placeholder="ex. AAPL" />
+          </div>
+          <div>
+            <Button className="submit-button">Submit</Button>
+          </div>
+
+          <Footer />
         </div>
-        <div>
-        <Button>Submit</Button>
-        </div>
-        <Footer />
-      </div>
       </MyProvider>
     );
   }
