@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Button } from "react-bootstrap";
+import Header from "./Header";
+import Footer from "./Footer";
 
 // first we will make a new context
 const MyContext = React.createContext();
@@ -46,15 +48,14 @@ class App extends Component {
     return (
       <MyProvider>
       <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Stock Quote Generator</h1>
-        </header>
+        <Header />
         <div>
         <input></input>
         </div>
         <div>
         <Button>Submit</Button>
         </div>
+        <Footer />
       </div>
       </MyProvider>
     );
