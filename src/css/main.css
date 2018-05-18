@@ -35,7 +35,13 @@ body {
   margin-bottom: 0;
 }
 
-input.search {
+.input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search {
   margin: 0;
   text-align: center;
   width: 50%;
@@ -47,6 +53,10 @@ input.search {
 }
 
 .submit-button {
-  margin-bottom: 1rem;
+  margin-left: 1rem;
+  text-align: center;
+  width: 20%;
+  z-index: 2;
+  font-size: 1.5em;
   /*margin-top: 1rem;*/
 }

@@ -18,7 +18,8 @@ class MyProvider extends Component {
       dataDisplayed: false,
       value: "",
       universe: [],
-      displayedStock: "AAPL"
+      displayedStock: "AAPL",
+      buttonText: "Submit"
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -27,15 +28,25 @@ class MyProvider extends Component {
   // get data on a single ticker
   getData = async => {
     let query = this.state.value;
-    let endpoint = `https://api.iextrading.com/1.0/stock/${query}/quote`
-    fetch(endpoint)
-      .then(response => response.json())
-      .then(data => this.addData(data));
+    let endpoint = `https://api.iextrading.com/1.0/stock/${query}/quote`;
+    fetch(endpoint).then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error('Something went wrong');
+      }
+    })
+    .then((responseJson) => {
+      this.addData(responseJson)
+    })
+    .catch((error) => {
+      console.log(error)
+    });
   };
 
   // get universe of options from IEX
   getUniverse = async => {
-    let endpoint = "https://api.iextrading.com/1.0/ref-data/symbols"
+    let endpoint = "https://api.iextrading.com/1.0/ref-data/symbols";
     fetch(endpoint)
       .then(response => response.json())
       .then(data => this.setState({ universe: data }));
@@ -44,14 +55,16 @@ class MyProvider extends Component {
   // add data to state
   addData = data => {
     this.setState({ currentQuote: data });
+    this.setState({ dataDisplayed: true });
+    this.setState({ buttonText: "Update" });
   };
 
   // find stock by name or ticker
   findMatches = (wordToMatch, stocks) => {
     return stocks.filter(stock => {
       // here we need to figure out if the name or ticker matches what was searched
-      const regex = new RegExp(wordToMatch, 'gi');
-      return stock.symbol.match(regex) || stock.name.match(regex)
+      const regex = new RegExp(wordToMatch, "gi");
+      return stock.symbol.match(regex) || stock.name.match(regex);
     });
   };
 
@@ -59,16 +72,21 @@ class MyProvider extends Component {
   displayMatches = () => {
     let matchArray = this.findMatches(this.state.value, this.state.universe);
     console.log(matchArray);
-  }
+  };
 
-  handleChange = (event) => {
+  handleChange = event => {
     this.setState({ value: event.target.value });
     this.displayMatches();
-  }
+  };
 
   handleSubmit = () => {
     this.getData();
-    this.setState({ dataDisplayed: true });
+  };
+
+  handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      this.handleSubmit();
+    }
   }
 
   // get universe on page load
@@ -83,7 +101,8 @@ class MyProvider extends Component {
           state: this.state,
           getData: this.getData,
           handleChange: this.handleChange,
-          handleSubmit: this.handleSubmit
+          handleSubmit: this.handleSubmit,
+          handleKeyPress: this.handleKeyPress
         }}
       >
         {this.props.children}
@@ -107,15 +126,23 @@ class App extends Component {
           </MyContext.Consumer>
           <MyContext.Consumer>
             {context => (
-          <React.Fragment>
-          <div>
-            <input type="text" className="search" placeholder="ex. AAPL" onChange={context.handleChange}/>
-          </div>
-
-          <div>
-            <Button className="submit-button" onClick={context.handleSubmit}>Submit</Button>
-          </div>
-          </React.Fragment>
+              <React.Fragment>
+                <div className="input">
+                  <input
+                    type="text"
+                    className="search"
+                    placeholder="ex. AAPL"
+                    onChange={context.handleChange}
+                    onKeyPress={context.handleKeyPress}
+                  />
+                  <Button
+                    className="submit-button"
+                    onClick={context.handleSubmit}
+                  >
+                    {context.state.buttonText}
+                  </Button>
+                </div>
+              </React.Fragment>
             )}
           </MyContext.Consumer>
           <Footer />

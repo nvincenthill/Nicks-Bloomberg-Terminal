@@ -13,8 +13,8 @@ class DataWell extends React.Component {
         {context => (
           <Well>
             <div>
-              <h2>{context.state.displayedStock}</h2>
-              <h2>{context.state.currentQuote.companyName}</h2>
+              <h2>{context.state.currentQuote.symbol}</h2>
+              <h3>{context.state.currentQuote.companyName}</h3>
               <h3>${context.state.currentQuote.iexRealtimePrice}</h3>
               <p>{context.state.currentQuote.changePercent * 100}% </p>
               <p>${Math.round(context.state.currentQuote.marketCap / 1000000000)}B</p>
