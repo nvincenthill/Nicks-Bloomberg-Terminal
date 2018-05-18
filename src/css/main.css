@@ -28,12 +28,15 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
 }
 
 .well {
   margin-bottom: 0;
   margin-top: 0;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 .input {
@@ -64,4 +67,45 @@ body {
 
 .red {
   border-color: red;
+}
+
+.quote-ticker {
+  font-weight: bold;
+  font-size: 4em;
+  margin-top: 0rem;
+  margin-bottom: 1rem;
+}
+
+.quote-name {
+  margin-top: 0rem;
+  margin-bottom: 1rem;
+}
+
+.quote-price {
+  margin-top: 0rem;
+  margin-bottom: 1rem;
+}
+
+.quote-dodchg {
+  margin-top: 0rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.red-text {
+  color: red;
+}
+
+.green-text {
+  color: green;
+}
+
+.quote-mrkcap {
+  margin-top: 0rem;
+  margin-bottom: 1rem;
+}
+
+.quote-peratio {
+  margin-top: 0rem;
+  margin-bottom: 1rem;
 }
