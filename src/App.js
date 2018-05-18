@@ -19,7 +19,8 @@ class MyProvider extends Component {
       value: "",
       universe: [],
       displayedStock: "AAPL",
-      buttonText: "Submit"
+      buttonText: "Submit",
+      inputClass: "search"
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -41,6 +42,8 @@ class MyProvider extends Component {
     })
     .catch((error) => {
       console.log(error)
+      this.setState({ inputClass: "animated shake search red" })
+      setTimeout(() => this.setState({ inputClass: "search" }), 1000)
     });
   };
 
@@ -130,7 +133,7 @@ class App extends Component {
                 <div className="input">
                   <input
                     type="text"
-                    className="search"
+                    className={context.state.inputClass}
                     placeholder="ex. AAPL"
                     onChange={context.handleChange}
                     onKeyPress={context.handleKeyPress}
