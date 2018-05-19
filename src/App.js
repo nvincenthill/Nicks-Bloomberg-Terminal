@@ -3,6 +3,7 @@ import { Button } from "react-bootstrap";
 import Header from "./Header";
 import Footer from "./Footer";
 import DataWell from "./DataWell";
+import Autocomplete from "./Autocomplete";
 import { Collapse } from "react-collapse";
 
 // first we will make a new context
@@ -17,10 +18,15 @@ class MyProvider extends Component {
       currentQuote: {},
       dataDisplayed: false,
       value: "",
-      universe: [],
+      universe: [
+              { id: "foo", name: "foo" },
+              { id: "bar", name: "bar" },
+              { id: "baz", name: "baz" }
+            ],
       displayedStock: "AAPL",
       buttonText: "Submit",
-      inputClass: "search"
+      inputClass: "search",
+      matchArray: []
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -67,14 +73,17 @@ class MyProvider extends Component {
     return stocks.filter(stock => {
       // here we need to figure out if the name or ticker matches what was searched
       const regex = new RegExp(wordToMatch, "gi");
-      return stock.symbol.match(regex) || stock.name.match(regex);
+      let result = stock.symbol.match(regex) || stock.name.match(regex);
+
+      // TODO limit array length
+      return result;
     });
   };
 
   //display matching stocks
   displayMatches = () => {
     let matchArray = this.findMatches(this.state.value, this.state.universe);
-    console.log(matchArray);
+    this.setState({ matchArray: matchArray });
   };
 
   handleChange = event => {
@@ -138,6 +147,7 @@ class App extends Component {
                     onChange={context.handleChange}
                     onKeyPress={context.handleKeyPress}
                   />
+                  <Autocomplete />
                   <Button
                     className="submit-button"
                     onClick={context.handleSubmit}
