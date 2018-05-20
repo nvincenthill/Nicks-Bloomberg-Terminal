@@ -4,7 +4,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import DataWell from "./DataWell";
 import Input from "./Input";
-import { Collapse } from "react-collapse";
+
 
 // first we will make a new context
 const MyContext = React.createContext();
@@ -15,21 +15,21 @@ class MyProvider extends Component {
     super(props);
 
     this.state = {
-      title: "Nick's Stock Quote Generator",
+      title: "Shroomberg",
       currentQuote: {},
-      ChartDataPrice: [],
-      ChartDataDates: [],
-      ChartData: [],
+      chartDataPrice: [],
+      chartDataDates: [],
       dataDisplayed: false,
       value: "",
       universe: [],
       displayedStock: "AAPL",
-      buttonText: "Submit",
+      buttonText: "SUBMIT",
       inputClass: "search",
       matchArray: [],
       autocompleteDisplayed: true,
       headerDisplayed: true,
-      placeholder: "ex. AAPL, Apple Inc., ..."
+      footerDisplayed: true,
+      placeholder: "ex. AAPL, TSLA, GE"
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -38,7 +38,7 @@ class MyProvider extends Component {
   // get data on a single ticker
   getData = async => {
     let query = this.state.value;
-    let endpoint = `https://api.iextrading.com/1.0/stock/${query}/batch?types=quote,news,chart&range=5y`;
+    let endpoint = `https://api.iextrading.com/1.0/stock/${query}/batch?types=quote,stats,company,news,chart&range=5y`;
 
     fetch(endpoint)
       .then(response => {
@@ -68,7 +68,6 @@ class MyProvider extends Component {
 
   // add data to state
   addData = data => {
-
     let price = [];
     let dates = [];
 
@@ -79,19 +78,19 @@ class MyProvider extends Component {
     this.setState({ currentData: data });
     this.setState({ currentNews: data.news });
     this.setState({ currentQuote: data.quote });
+    this.setState({ currentStats: data.stats });
+    this.setState({ currentCompany: data.company });
     this.setState({ dataDisplayed: true });
     this.setState({ autocompleteDisplayed: false });
-    this.setState({ headerDisplayed: false });
+    this.setState({ headerDisplayed: true });
+    this.setState({ footerDisplayed: true });
     this.setState({ value: "" });
-    this.setState({ buttonText: "Update" });
-    this.setState({ title: this.state.currentQuote.companyName });
+    this.setState({ buttonText: "UPDATE" });
+    // this.setState({ title: this.state.currentQuote.companyName });
     this.setState({ ChartData: data.chart });
 
-
-
-
-    this.setState({ ChartDataPrice: price });
-    this.setState({ ChartDataDates: dates });
+    this.setState({ chartDataPrice: price });
+    this.setState({ chartDataDates: dates });
   };
 
   // find stock by name or ticker
@@ -133,14 +132,14 @@ class MyProvider extends Component {
   // handle chart range change
   handleChartRangeChange = range => {
     // take a copy of state
-    let dates = this.state.ChartDataDates
-    let prices = this.state.ChartDataPrices
+    let dates = this.state.ChartDataDates;
+    let prices = this.state.ChartDataPrices;
     // filter array for required range
-      //TODO
+    //TODO
     // set state with updated range
-    this.setState({ ChartDataDates: dates });
-    this.setState({ ChartDataPrices: prices });
-  }
+    this.setState({ chartDataDates: dates });
+    this.setState({ chartDataPrices: prices });
+  };
 
   // get universe on page load
   componentWillMount() {
@@ -157,7 +156,6 @@ class MyProvider extends Component {
           handleSubmit: this.handleSubmit,
           handleKeyPress: this.handleKeyPress,
           handleChartRangeChange: this.handleChartRangeChange
-
         }}
       >
         {this.props.children}
@@ -173,19 +171,14 @@ class App extends Component {
         <MyContext.Consumer>
           {context => (
             <div className="App">
-              <Collapse isOpened={context.state.headerDisplayed}>
+              
                 <Header />
-              </Collapse>
-
-              <Collapse isOpened={context.state.dataDisplayed}>
-                <DataWell
-                />
-              </Collapse>
+              
+              <DataWell />
+              <Footer />
             </div>
           )}
         </MyContext.Consumer>
-        <Input />
-        <Footer />
       </MyProvider>
     );
   }

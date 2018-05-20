@@ -1,5 +1,7 @@
 import React from "react";
 import { MyContext } from "./App.js";
+import { Collapse } from "react-collapse";
+import Input from "./Input";
 
 class Header extends React.Component {
   state = {};
@@ -12,9 +14,12 @@ class Header extends React.Component {
     return (
       <MyContext.Consumer>
         {context => (
-          <header className="header">
-            <h1 className="App-title">{context.state.title}</h1>
-          </header>
+          <Collapse isOpened={context.state.headerDisplayed}>
+            <header className="header">
+              <h1 className="App-title">{context.state.title}</h1>
+              <Input />
+            </header>
+          </Collapse>
         )}
       </MyContext.Consumer>
     );

@@ -12,7 +12,7 @@ html {
   font-size: 62.5%;
   --main-font: "";
   --color1: #222;
-  --color2: ##5F5F5F;
+  --color2: #eeeeee;
 }
 
 /* inherit border-box on all elements in the universe and before and after */
@@ -22,6 +22,9 @@ maintit *:after {
   box-sizing: inherit;
 }
 
+body {
+  background: var(--color2);
+}
 
 .App {
   text-align: center;
@@ -30,15 +33,18 @@ maintit *:after {
   padding-bottom: 100p
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
 .App-title {
   /*font-size: 1.5em;*/
   margin-bottom: 0;
   margin-top: 0;
+  font-weight: bold;
+  font-size: 4.5rem;
+  letter-spacing: -2px;
+
+  grid-column-start: second-col;
+  grid-column-end: fifth-col;
+  grid-row-start: first-rw;
+  grid-row-end: second-rw;
 }
 
 .App-intro {
@@ -50,26 +56,19 @@ body {
   padding: 0;
 }
 
-.well {
-  margin-bottom: 0;
-  margin-top: 0;
-  padding-left: 0rem;
-  padding-right: 0rem;
-  padding-top: 0rem;
-  padding-bottom: 0rem;
-  border-width: 0;
-  background: #222;
-  border-radius: 0;
-}
-
 .input-container {
   /*position: fixed;*/
   width: 100%;
   /*top: 50vh;*/
   display: flex;
   /*align-items: center;*/
-  margin-top: 1em;
+  /*margin-top: 2rem;*/
   justify-content: center;
+
+  grid-column-start: second-col;
+  grid-column-end: fifth-col;
+  grid-row-start: second-rw;
+  grid-row-end: end;
 }
 
 .input {
@@ -119,8 +118,9 @@ li {
   width: 20%;
   height: 5vh;
   z-index: 2;
-  font-size: 1.5em;
+  font-size: 1.75em;
   padding: 0;
+  /*font-weight: bold;*/
   /*margin-top: 1rem;*/
 }
 
@@ -141,9 +141,18 @@ li {
 .quote-container {
   display: grid;
   grid-template-columns: [first-col] 2fr [second-col] 1fr [third-col] 3fr [fourth-col] 1fr [fifth-col] 2fr [end];
-  grid-template-rows: [first-rw] 1fr [second-rw] 1fr [third-rw] .5fr [fourth-rw] .5fr [end];
+  grid-template-rows: [first-rw] 1fr [second-rw] 1fr [third-rw] 1fr [fourth-rw] 1fr [end];
+  height: 75vh;
+  margin-bottom: 0;
+  margin-top: 0;
+  padding-left: 0rem;
+  padding-right: 0rem;
+  padding-top: 0rem;
+  padding-bottom: 0rem;
+  border-width: 0;
+  background: #222;
+  border-radius: 0;
 
-  padding: 2rem;
 }
 
 .quote-info {
@@ -157,15 +166,16 @@ li {
   border-style: dotted;*/
   justify-content: center;
   align-items: center;
+  padding: 2rem;
 }
 
 .quote-ticker {
   font-weight: bold;
-  font-size: 4em;
+  font-size: 5em;
   margin-top: 0rem;
   margin-bottom: 0rem;
 
-  color: white;
+  color: var(--color2);
 }
 
 .quote-name {
@@ -173,26 +183,30 @@ li {
   margin-bottom: 0.5rem;
 
 
-  color: white;
+  color: var(--color2);
 }
 
 .quote-chart {
-  background-color: #222;
+  background-color: var(--color1);
 
   grid-column-start: second-col;
   grid-column-end: fifth-col;
   grid-row-start: first-rw;
   grid-row-end: third-rw;
 
-  padding: 1rem;
+  padding: 2rem;
+}
+
+.quote-chart-container {
+  min-height: 30vh;
 }
 
 .quote-price {
   margin-top: 0rem;
   margin-bottom: 0rem;
-  font-size: 4em;
+  font-size: 3em;
 
-  color: white;
+  color: var(--color2);
 }
 
 .quote-dodchg {
@@ -203,41 +217,85 @@ li {
 
 }
 
-.quote-stats {
+.quote-summary {
   grid-column-start: first-col;
   grid-column-end: second-col;
   grid-row-start: third-rw;
   grid-row-end: end;
 
+  padding-right: 2rem;
+  padding-left: 2rem;
+  padding-top: 0rem;
+  padding-bottom: 2rem;
+
+  text-align: left;
   /*background: red;*/
 }
 
-.quote-metrics {
-  grid-column-start: third-col;
-  grid-column-end: fourth-col;
+.quote-performance {
+  grid-column-start: second-col;
+  grid-column-end: fifth-col;
   grid-row-start: third-rw;
   grid-row-end: end;
 
-  /*background: grey;*/
+  padding-right: 2rem;
+  padding-left: 2rem;
+  padding-top: 0rem;
+  padding-bottom: 2rem;
+
+  color: var(--color2);
+/*  background: grey;*/
+}
+
+.quote-performance-list {
+  display: table;
+  font-size: 1em;
+}
+
+.quote-performance-list-item {
+  display: table-cell;
+}
+
+.quote-stats {
+  grid-column-start: fifth-col;
+  grid-column-end: end;
+  grid-row-start: third-rw;
+  grid-row-end: end;
+
+  padding-right: 2rem;
+  padding-left: 2rem;
+  padding-top: 0rem;
+  padding-bottom: 2rem;
+
+  text-align: right;
+  /*background: blue;*/
 }
 
 .quote-mrkcap {
   margin-top: 0rem;
-  margin-bottom: 1rem;
-  color: white;
+  margin-bottom: 0rem;
+  color: var(--color2);
 }
 
 .quote-peratio {
   margin-top: 0rem;
+  margin-bottom: 0rem;
+  color: var(--color2);
+}
+
+.quote-description {
+  margin-top: 0rem;
   margin-bottom: 1rem;
-  color: white;
+  color: var(--color2);
 }
 
 .quote-news {
   grid-column-start: fifth-col;
   grid-column-end: end;
   grid-row-start: first-rw;
-  grid-row-end: end;
+  grid-row-end: third-rw;
+
+  padding: 2rem;
 }
 
 .quote-news-list {
@@ -245,28 +303,95 @@ li {
 }
 
 .quote-news-title {
-  color: white;
+  color: var(--color2);
   margin-bottom: 1rem;
+  transition: .5s ease-in-out;
+}
+
+.quote-news-title:hover {
+  transition: .5s ease-in-out;
+  transform: translateX(-5%);
 }
 
 .quote-subtitle {
-  color: white;
+  border-top: 5px solid var(--color2);
+  color: var(--color2);
+  font-weight: bold;
+  margin-bottom: 1rem;
+  margin-top: 0rem;
+  padding-top: 1rem;
+}
+
+.quote-update {
+  grid-column-start: first-col;
+  grid-column-end: end;
+  grid-row-start: fourth-rw;
+  grid-row-end: end;
+
+  background: var(--color2);
 }
 
 .header {
   background-color: #222;
-  padding: 2rem;
-  color: white;
+  padding-right: 2rem;
+  padding-left: 2rem;
+  padding-top: 2rem;
+  padding-bottom: 0rem;
+  color: var(--color2);
   margin-bottom: 0rem;
   margin-top: 0;
-  width: 100%;
+  height: 15vh;
   top: 0;
+
+  display: grid;
+
+  grid-template-columns: [first-col] 2fr [second-col] 1fr [third-col] 3fr [fourth-col] 1fr [fifth-col] 2fr [end];
+  grid-template-rows: [first-rw] 1fr [second-rw] 1fr [end];
 }
 
 .footer {
-  top: 90vh;
+  margin-top: 1rem; 
   width: 100%;
   text-align: center;
-  position: fixed;
   z-index: 1;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.btn-default {
+  border-width: 0;
+  color: #eeeeee;
+  background: var(--color1);
+  }
+
+.btn-default:hover {
+    color: var(--color1);
+    background: var(--color2);;
+  }
+
+.btn-success {
+    border-width: 0;
+    color: var(--color1);
+    background: var(--color2);
+    }
+
+.btn-success:hover {
+      color: var(--color2);
+      background: green;
+  }
+
+input {
+  border-width: 0;
+  background: var(--color2);
+  color: var(--color1);
 }

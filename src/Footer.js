@@ -1,4 +1,6 @@
 import React from "react";
+import { MyContext } from "./App.js";
+import { Collapse } from "react-collapse";
 
 class Footer extends React.Component {
   componentWillMount() {}
@@ -7,10 +9,16 @@ class Footer extends React.Component {
   componentWillUnmount() {}
   render() {
     return (
-      <div className="footer">
-        <p id="footer-name">Copyright © 2018 Nicholas Vincent-Hill</p>
-        <p id="footer-iex">Data provided for free by <a href="https://iextrading.com/api-exhibit-a"> IEX </a></p>
-      </div>
+      <MyContext.Consumer>
+        {context => (
+            <div className="footer">
+              <p id="footer-name">
+                Copyright © 2018 Nicholas Vincent-Hill | Data provided for free
+                by <a href="https://iextrading.com/api-exhibit-a"> IEX </a>
+              </p>
+            </div>
+        )}
+      </MyContext.Consumer>
     );
   }
 }

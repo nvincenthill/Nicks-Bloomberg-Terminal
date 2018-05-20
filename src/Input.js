@@ -26,11 +26,8 @@ class Input extends React.Component {
                   onKeyPress={context.handleKeyPress}
                   value={context.state.value}
                 />
-                <Collapse isOpened={context.state.autocompleteDisplayed}>
-                  <Autocomplete />
-                </Collapse>
               </div>
-              <Button className="submit-button" onClick={context.handleSubmit}>
+              <Button className="btn-success submit-button" onClick={context.handleSubmit}>
                 {context.state.buttonText}
               </Button>
             </div>
