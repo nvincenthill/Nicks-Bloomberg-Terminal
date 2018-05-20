@@ -14,7 +14,7 @@
       }
       render() {
         return (
-          <header className="App-header">
+          <header className="header">
             <h1 className="App-title">Stock Quote Generator</h1>
           </header>
         );

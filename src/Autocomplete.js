@@ -1,5 +1,4 @@
 import React from "react";
-import ReactAutocomplete from "react-autocomplete";
 import { MyContext } from "./App.js";
 
 class Autocomplete extends React.Component {
@@ -13,27 +12,31 @@ class Autocomplete extends React.Component {
     return (
       <MyContext.Consumer>
         {context => (
-          <ReactAutocomplete
-            items={context.state.matchArray}
-            getItemValue={item => item.name}
-            renderItem={(item, highlighted) => (
-              <div
-                key={item.symbol}
-                style={{
-                  backgroundColor: highlighted ? "#eee" : "transparent"
-                }}
-              >
-                {item.name}
-              </div>
-            )}
-            value={context.state.value}
-            onChange={context.handleChange}
-            onSelect={console.log(this)}
-            wrapperStyle={{
-              "caretColor": "transparent",
-              background: "red"
-            }}
-          />
+          <div className="autocomplete">
+            <ul>
+              <li onClick={context.handleSubmit}>
+                {context.state.matchArray[0] !== undefined
+                  ? context.state.matchArray[0].name
+                  : null}
+              </li>
+              <li>
+                {context.state.matchArray[1] !== undefined
+                  ? context.state.matchArray[1].name
+                  : null}
+              </li>
+              <li>
+                {context.state.matchArray[2] !== undefined
+                  ? context.state.matchArray[2].name
+                  : null}
+              </li>
+              <li>
+                {context.state.matchArray[3] !== undefined
+                  ? context.state.matchArray[3].name
+                  : null}
+              </li>
+
+            </ul>
+          </div>
         )}
       </MyContext.Consumer>
     );

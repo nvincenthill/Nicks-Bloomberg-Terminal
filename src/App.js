@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { Button } from "react-bootstrap";
+
 import Header from "./Header";
 import Footer from "./Footer";
 import DataWell from "./DataWell";
-import Autocomplete from "./Autocomplete";
+import Input from "./Input";
 import { Collapse } from "react-collapse";
 
 // first we will make a new context
@@ -18,15 +18,13 @@ class MyProvider extends Component {
       currentQuote: {},
       dataDisplayed: false,
       value: "",
-      universe: [
-              { id: "foo", name: "foo" },
-              { id: "bar", name: "bar" },
-              { id: "baz", name: "baz" }
-            ],
+      universe: [],
       displayedStock: "AAPL",
       buttonText: "Submit",
       inputClass: "search",
-      matchArray: []
+      matchArray: [],
+      autocompleteDisplayed: true,
+      placeholder: "ex. AAPL, Apple Inc., ..."
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -36,21 +34,22 @@ class MyProvider extends Component {
   getData = async => {
     let query = this.state.value;
     let endpoint = `https://api.iextrading.com/1.0/stock/${query}/quote`;
-    fetch(endpoint).then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error('Something went wrong');
-      }
-    })
-    .then((responseJson) => {
-      this.addData(responseJson)
-    })
-    .catch((error) => {
-      console.log(error)
-      this.setState({ inputClass: "animated shake search red" })
-      setTimeout(() => this.setState({ inputClass: "search" }), 1000)
-    });
+    fetch(endpoint)
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("Something went wrong");
+        }
+      })
+      .then(responseJson => {
+        this.addData(responseJson);
+      })
+      .catch(error => {
+        console.log(error);
+        this.setState({ inputClass: "animated shake search red" });
+        setTimeout(() => this.setState({ inputClass: "search" }), 1000);
+      });
   };
 
   // get universe of options from IEX
@@ -65,17 +64,18 @@ class MyProvider extends Component {
   addData = data => {
     this.setState({ currentQuote: data });
     this.setState({ dataDisplayed: true });
+    this.setState({ autocompleteDisplayed: false });
+    this.setState({ value: "" });
     this.setState({ buttonText: "Update" });
   };
 
   // find stock by name or ticker
   findMatches = (wordToMatch, stocks) => {
     return stocks.filter(stock => {
+      let result = [];
       // here we need to figure out if the name or ticker matches what was searched
       const regex = new RegExp(wordToMatch, "gi");
-      let result = stock.symbol.match(regex) || stock.name.match(regex);
-
-      // TODO limit array length
+      result = stock.symbol.match(regex) || stock.name.match(regex);
       return result;
     });
   };
@@ -83,11 +83,14 @@ class MyProvider extends Component {
   //display matching stocks
   displayMatches = () => {
     let matchArray = this.findMatches(this.state.value, this.state.universe);
+    matchArray = matchArray.slice(0, 50);
+    console.log(matchArray, this.state.value);
     this.setState({ matchArray: matchArray });
   };
 
   handleChange = event => {
     this.setState({ value: event.target.value });
+    this.setState({ autocompleteDisplayed: true });
     this.displayMatches();
   };
 
@@ -95,11 +98,12 @@ class MyProvider extends Component {
     this.getData();
   };
 
-  handleKeyPress = (event) => {
-    if (event.key === 'Enter') {
+  // handle a key pressed and submit if "enter" is pressed
+  handleKeyPress = event => {
+    if (event.key === "Enter") {
       this.handleSubmit();
     }
-  }
+  };
 
   // get universe on page load
   componentWillMount() {
@@ -136,28 +140,7 @@ class App extends Component {
               </Collapse>
             )}
           </MyContext.Consumer>
-          <MyContext.Consumer>
-            {context => (
-              <React.Fragment>
-                <div className="input">
-                  <input
-                    type="text"
-                    className={context.state.inputClass}
-                    placeholder="ex. AAPL"
-                    onChange={context.handleChange}
-                    onKeyPress={context.handleKeyPress}
-                  />
-                  <Autocomplete />
-                  <Button
-                    className="submit-button"
-                    onClick={context.handleSubmit}
-                  >
-                    {context.state.buttonText}
-                  </Button>
-                </div>
-              </React.Fragment>
-            )}
-          </MyContext.Consumer>
+          <Input />
           <Footer />
         </div>
       </MyProvider>

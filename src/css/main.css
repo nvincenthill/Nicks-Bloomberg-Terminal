@@ -1,18 +1,13 @@
 .App {
   text-align: center;
+  min-height: 100%;
+  
+  padding-bottom: 100p
 }
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  padding: 2rem;
-  color: white;
-  margin-bottom: 0rem;
-  margin-top: 0;
 }
 
 .App-title {
@@ -39,27 +34,60 @@ body {
   padding-bottom: 1rem;
 }
 
-.input {
+.input-container {
+  /*position: fixed;*/
+  width: 100%;
+  /*top: 50vh;*/
   display: flex;
-  align-items: center;
+  /*align-items: center;*/
+  margin-top: 1em;
   justify-content: center;
 }
 
+.input {
+  max-width: 40vw;
+}
+
 .search {
+/*  position: fixed;*/
   margin: 0;
   text-align: center;
-  width: 50%;
+  /*width: 100%;*/
+  height: 5vh;
+  width: 40vw;
   z-index: 2;
   font-size: 2em;
-  margin-bottom: 1rem;
-  margin-top: 1rem;
   caret-color: transparent;
 }
 
+.autocomplete {
+  position: relative;
+  /*bottom: -1rem;*/
+  /*background: red;*/
+  /*display: none;*/
+  text-align: center;
+  /*background: red;*/
+  max-width: 50vw;
+  text-overflow: clip;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+  padding-top: 0.5rem;
+  margin-bottom: 0;
+  text-overflow: clip;
+}
+
+li {
+  text-overflow: clip;
+}
+
 .submit-button {
-  margin-left: 1rem;
+  margin-left: 2rem;
   text-align: center;
   width: 20%;
+  height: 5vh;
   z-index: 2;
   font-size: 1.5em;
   /*margin-top: 1rem;*/
@@ -108,4 +136,22 @@ body {
 .quote-peratio {
   margin-top: 0rem;
   margin-bottom: 1rem;
+}
+
+.header {
+  background-color: #222;
+  padding: 2rem;
+  color: white;
+  margin-bottom: 0rem;
+  margin-top: 0;
+  width: 100%;
+  top: 0;
+}
+
+.footer {
+  top: 90vh;
+  width: 100%;
+  text-align: center;
+  position: fixed;
+  z-index: 1;
 }
