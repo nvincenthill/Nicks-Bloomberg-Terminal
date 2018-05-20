@@ -131,18 +131,21 @@ class App extends Component {
   render() {
     return (
       <MyProvider>
-        <div className="App">
-          <Header />
-          <MyContext.Consumer>
-            {context => (
+        <MyContext.Consumer>
+          {context => (
+            <div className="App">
+              <Collapse isOpened={!context.state.dataDisplayed}>
+                <Header />
+              </Collapse>
+
               <Collapse isOpened={context.state.dataDisplayed}>
                 <DataWell />
               </Collapse>
-            )}
-          </MyContext.Consumer>
-          <Input />
-          <Footer />
-        </div>
+            </div>
+          )}
+        </MyContext.Consumer>
+        <Input />
+        <Footer />
       </MyProvider>
     );
   }
