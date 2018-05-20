@@ -1,3 +1,28 @@
+/* Variable declaration */
+
+:root {
+}
+
+/* Border box declaration */
+
+html {
+  @maintitle box-sizing: border-box;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  font-size: 62.5%;
+  --main-font: "";
+  --color1: #222;
+  --color2: ##5F5F5F;
+}
+
+/* inherit border-box on all elements in the universe and before and after */
+*,
+*:before,
+maintit *:after {
+  box-sizing: inherit;
+}
+
+
 .App {
   text-align: center;
   min-height: 100%;
@@ -33,6 +58,8 @@ body {
   padding-top: 0rem;
   padding-bottom: 0rem;
   border-width: 0;
+  background: #222;
+  border-radius: 0;
 }
 
 .input-container {
@@ -47,6 +74,7 @@ body {
 
 .input {
   max-width: 40vw;
+  padding: 0;
 }
 
 .search {
@@ -59,6 +87,7 @@ body {
   z-index: 2;
   font-size: 2em;
   caret-color: transparent;
+  padding: 0;
 }
 
 .autocomplete {
@@ -91,6 +120,7 @@ li {
   height: 5vh;
   z-index: 2;
   font-size: 1.5em;
+  padding: 0;
   /*margin-top: 1rem;*/
 }
 
@@ -111,29 +141,39 @@ li {
 .quote-container {
   display: grid;
   grid-template-columns: [first-col] 2fr [second-col] 1fr [third-col] 3fr [fourth-col] 1fr [fifth-col] 2fr [end];
-  grid-template-rows: [first-rw] 1fr [second-rw] 1fr [third-rw] 1fr [fourth-rw] 1fr [end];
+  grid-template-rows: [first-rw] 1fr [second-rw] 1fr [third-rw] .5fr [fourth-rw] .5fr [end];
+
+  padding: 2rem;
+}
+
+.quote-info {
+  grid-column-start: first-col;
+  grid-column-end: second-col;
+  grid-row-start: first-rw;
+  grid-row-end: third-rw;
+  text-align: center;
+/*  border-color: #5F5F5F;
+  border-width: 1px;
+  border-style: dotted;*/
+  justify-content: center;
+  align-items: center;
 }
 
 .quote-ticker {
   font-weight: bold;
   font-size: 4em;
   margin-top: 0rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0rem;
 
-  grid-column-start: first-col;
-  grid-column-end: second-col;
-  grid-row-start: first-rw;
-  grid-row-end: second-rw;
+  color: white;
 }
 
 .quote-name {
   margin-top: 0rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 
-  grid-column-start: first-col;
-  grid-column-end: second-col;
-  grid-row-start: second-rw;
-  grid-row-end: third-rw;
+
+  color: white;
 }
 
 .quote-chart {
@@ -143,17 +183,16 @@ li {
   grid-column-end: fifth-col;
   grid-row-start: first-rw;
   grid-row-end: third-rw;
+
+  padding: 1rem;
 }
 
 .quote-price {
   margin-top: 0rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0rem;
   font-size: 4em;
 
-  grid-column-start: fifth-col;
-  grid-column-end: end;
-  grid-row-start: first-rw;
-  grid-row-end: second-rw;
+  color: white;
 }
 
 .quote-dodchg {
@@ -162,19 +201,15 @@ li {
   font-weight: bold;
   font-size: 2.5em;
 
-  grid-column-start: fifth-col;
-  grid-column-end: end;
-  grid-row-start: second-rw;
-  grid-row-end: third-rw;
 }
 
-.quote-info {
+.quote-stats {
   grid-column-start: first-col;
-  grid-column-end: third-col;
+  grid-column-end: second-col;
   grid-row-start: third-rw;
   grid-row-end: end;
 
-  background: red;
+  /*background: red;*/
 }
 
 .quote-metrics {
@@ -183,26 +218,39 @@ li {
   grid-row-start: third-rw;
   grid-row-end: end;
 
-  background: grey;
-}
-
-.quote-metrics {
-  grid-column-start: fourth-col;
-  grid-column-end: end;
-  grid-row-start: third-rw;
-  grid-row-end: end;
-
-  background: red;
+  /*background: grey;*/
 }
 
 .quote-mrkcap {
   margin-top: 0rem;
   margin-bottom: 1rem;
+  color: white;
 }
 
 .quote-peratio {
   margin-top: 0rem;
   margin-bottom: 1rem;
+  color: white;
+}
+
+.quote-news {
+  grid-column-start: fifth-col;
+  grid-column-end: end;
+  grid-row-start: first-rw;
+  grid-row-end: end;
+}
+
+.quote-news-list {
+  text-align: left;
+}
+
+.quote-news-title {
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.quote-subtitle {
+  color: white;
 }
 
 .header {

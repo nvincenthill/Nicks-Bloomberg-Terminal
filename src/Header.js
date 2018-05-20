@@ -1,24 +1,23 @@
-    import React from "react";
+import React from "react";
+import { MyContext } from "./App.js";
 
-    class Header extends React.Component {
-      state = {
-      };
-      
-      componentWillMount() {
-      }
-      componentDidMount() {
-      }
-      componentDidUpdate() {
-      }
-      componentWillUnmount() {
-      }
-      render() {
-        return (
+class Header extends React.Component {
+  state = {};
+
+  componentWillMount() {}
+  componentDidMount() {}
+  componentDidUpdate() {}
+  componentWillUnmount() {}
+  render() {
+    return (
+      <MyContext.Consumer>
+        {context => (
           <header className="header">
-            <h1 className="App-title">Stock Quote Generator</h1>
+            <h1 className="App-title">{context.state.title}</h1>
           </header>
-        );
-      }
-    }
-    export default Header;
-  
+        )}
+      </MyContext.Consumer>
+    );
+  }
+}
+export default Header;

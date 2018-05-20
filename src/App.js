@@ -15,7 +15,11 @@ class MyProvider extends Component {
     super(props);
 
     this.state = {
+      title: "Nick's Stock Quote Generator",
       currentQuote: {},
+      ChartDataPrice: [],
+      ChartDataDates: [],
+      ChartData: [],
       dataDisplayed: false,
       value: "",
       universe: [],
@@ -24,6 +28,7 @@ class MyProvider extends Component {
       inputClass: "search",
       matchArray: [],
       autocompleteDisplayed: true,
+      headerDisplayed: true,
       placeholder: "ex. AAPL, Apple Inc., ..."
     };
 
@@ -33,7 +38,8 @@ class MyProvider extends Component {
   // get data on a single ticker
   getData = async => {
     let query = this.state.value;
-    let endpoint = `https://api.iextrading.com/1.0/stock/${query}/quote`;
+    let endpoint = `https://api.iextrading.com/1.0/stock/${query}/batch?types=quote,news,chart&range=5y`;
+
     fetch(endpoint)
       .then(response => {
         if (response.ok) {
@@ -62,11 +68,30 @@ class MyProvider extends Component {
 
   // add data to state
   addData = data => {
-    this.setState({ currentQuote: data });
+
+    let price = [];
+    let dates = [];
+
+    for (let i = 0; i < data.chart.length; i++) {
+      price.push(data.chart[i].close);
+      dates.push(data.chart[i].date);
+    }
+    this.setState({ currentData: data });
+    this.setState({ currentNews: data.news });
+    this.setState({ currentQuote: data.quote });
     this.setState({ dataDisplayed: true });
     this.setState({ autocompleteDisplayed: false });
+    this.setState({ headerDisplayed: false });
     this.setState({ value: "" });
     this.setState({ buttonText: "Update" });
+    this.setState({ title: this.state.currentQuote.companyName });
+    this.setState({ ChartData: data.chart });
+
+
+
+
+    this.setState({ ChartDataPrice: price });
+    this.setState({ ChartDataDates: dates });
   };
 
   // find stock by name or ticker
@@ -105,6 +130,18 @@ class MyProvider extends Component {
     }
   };
 
+  // handle chart range change
+  handleChartRangeChange = range => {
+    // take a copy of state
+    let dates = this.state.ChartDataDates
+    let prices = this.state.ChartDataPrices
+    // filter array for required range
+      //TODO
+    // set state with updated range
+    this.setState({ ChartDataDates: dates });
+    this.setState({ ChartDataPrices: prices });
+  }
+
   // get universe on page load
   componentWillMount() {
     this.getUniverse();
@@ -118,7 +155,9 @@ class MyProvider extends Component {
           getData: this.getData,
           handleChange: this.handleChange,
           handleSubmit: this.handleSubmit,
-          handleKeyPress: this.handleKeyPress
+          handleKeyPress: this.handleKeyPress,
+          handleChartRangeChange: this.handleChartRangeChange
+
         }}
       >
         {this.props.children}
@@ -134,12 +173,13 @@ class App extends Component {
         <MyContext.Consumer>
           {context => (
             <div className="App">
-              <Collapse isOpened={!context.state.dataDisplayed}>
+              <Collapse isOpened={context.state.headerDisplayed}>
                 <Header />
               </Collapse>
 
               <Collapse isOpened={context.state.dataDisplayed}>
-                <DataWell />
+                <DataWell
+                />
               </Collapse>
             </div>
           )}
