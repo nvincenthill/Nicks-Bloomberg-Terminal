@@ -12,6 +12,33 @@ class Chart extends Component {
       tooltips: {
         enabled: true
       },
+      scales: {
+        xAxes: [
+          {
+            display: false,
+            gridLines: {
+              color: "#545454"
+            },
+            ticks: {
+              fontColor: "transparent",
+              fontSize: 10
+            }
+          }
+        ],
+        yAxes: [
+          {
+            display: true,
+            gridLines: {
+              color: "#545454"
+            },
+            scaleLabel: {
+              display: true,
+              fontSize: 20,
+              labelString: "Price ($)"
+            }
+          }
+        ]
+      },
       responsive: true,
       maintainAspectRatio: false
     };
@@ -20,7 +47,7 @@ class Chart extends Component {
       datasets: [
         {
           label: this.props.name,
-          fill: false,
+          fill: "origin",
           lineTension: 0.1,
           borderColor: "#eeeeee",
           borderCapStyle: "butt",
@@ -37,7 +64,8 @@ class Chart extends Component {
           pointRadius: 1,
           pointHitRadius: 10,
           color: "#eeeeee",
-          data: this.props.chartDataPrice
+          data: this.props.chartDataPrice,
+          backgroundColor: "green"
         }
       ]
     };
@@ -48,25 +76,68 @@ class Chart extends Component {
             <div className="quote-chart-container">
               <Line data={data} options={options} />
             </div>
-
-            <Button onClick={() => context.handleChartRangeChange("5Y")}>
-              5Y
-            </Button>
-            <Button onClick={() => context.handleChartRangeChange("1Y")}>
-              1Y
-            </Button>
-            <Button onClick={() => context.handleChartRangeChange("YTD")}>
-              YTD
-            </Button>
-            <Button onClick={() => context.handleChartRangeChange("1M")}>
-              1M
-            </Button>
-            <Button onClick={() => context.handleChartRangeChange("MTD")}>
-              MTD
-            </Button>
-            <Button onClick={() => context.handleChartRangeChange("1D")}>
-              1D
-            </Button>
+            <div className="quote-chart-buttons-container">
+              <Button
+                className={
+                  context.state.currentChartButton === "5Y"
+                    ? "quote-chart-button-active"
+                    : "quote-chart-button"
+                }
+                onClick={() => context.handleChartRangeChange("5Y")}
+              >
+                5Y
+              </Button>
+              <Button
+                className={
+                  context.state.currentChartButton === "1Y"
+                    ? "quote-chart-button-active"
+                    : "quote-chart-button"
+                }
+                onClick={() => context.handleChartRangeChange("1Y")}
+              >
+                1Y
+              </Button>
+              <Button
+                className={
+                  context.state.currentChartButton === "YTD"
+                    ? "quote-chart-button-active"
+                    : "quote-chart-button"
+                }
+                onClick={() => context.handleChartRangeChange("YTD")}
+              >
+                YTD
+              </Button>
+              <Button
+                className={
+                  context.state.currentChartButton === "1M"
+                    ? "quote-chart-button-active"
+                    : "quote-chart-button"
+                }
+                onClick={() => context.handleChartRangeChange("1M")}
+              >
+                1M
+              </Button>
+              <Button
+                className={
+                  context.state.currentChartButton === "MTD"
+                    ? "quote-chart-button-active"
+                    : "quote-chart-button"
+                }
+                onClick={() => context.handleChartRangeChange("MTD")}
+              >
+                MTD
+              </Button>
+              <Button
+                className={
+                  context.state.currentChartButton === "1D"
+                    ? "quote-chart-button-active"
+                    : "quote-chart-button"
+                }
+                onClick={() => context.handleChartRangeChange("1D")}
+              >
+                1D
+              </Button>
+            </div>
           </div>
         )}
       </MyContext.Consumer>

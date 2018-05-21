@@ -118,7 +118,7 @@ li {
   width: 20%;
   height: 5vh;
   z-index: 2;
-  font-size: 1.75em;
+  font-size: 1em;
   padding: 0;
   /*font-weight: bold;*/
   /*margin-top: 1rem;*/
@@ -141,7 +141,7 @@ li {
 .quote-container {
   display: grid;
   grid-template-columns: [first-col] 2fr [second-col] 1fr [third-col] 3fr [fourth-col] 1fr [fifth-col] 2fr [end];
-  grid-template-rows: [first-rw] 1fr [second-rw] 1fr [third-rw] 1fr [fourth-rw] 1fr [end];
+  grid-template-rows: [first-rw] 1fr [second-rw] .5fr [third-rw] 1fr [fourth-rw] 1fr [end];
   height: 75vh;
   margin-bottom: 0;
   margin-top: 0;
@@ -166,7 +166,11 @@ li {
   border-style: dotted;*/
   justify-content: center;
   align-items: center;
-  padding: 2rem;
+
+  padding-left: 4rem;
+  padding-right: 2rem;
+  padding-top: 0rem;
+  padding-bottom: 0rem;
 }
 
 .quote-ticker {
@@ -194,18 +198,38 @@ li {
   grid-row-start: first-rw;
   grid-row-end: third-rw;
 
-  padding: 2rem;
+  padding-left: 0rem;
+  padding-right: 0rem;
+  padding-top: 2rem;
+  padding-bottom: 0rem;
 }
 
 .quote-chart-container {
-  min-height: 30vh;
+  min-height: 35vh;
+  z-index: 1;
+  /*margin-bottom: -5vh; */
+}
+
+.quote-chart-buttons-container {
+  margin-top: 2vh;
+  z-index: 10;
+  /*display:inline-block;*/
+}
+
+.quote-chart-button {
+  background: var(--color1);
+  color: var(--color2);
+}
+
+.quote-chart-button-active {
+  background: var(--color2);
+  color: var(--color1);
 }
 
 .quote-price {
   margin-top: 0rem;
   margin-bottom: 0rem;
   font-size: 3em;
-
   color: var(--color2);
 }
 
@@ -224,9 +248,9 @@ li {
   grid-row-end: end;
 
   padding-right: 2rem;
-  padding-left: 2rem;
+  padding-left: 4rem;
   padding-top: 0rem;
-  padding-bottom: 2rem;
+  padding-bottom: 0rem;
 
   text-align: left;
   /*background: red;*/
@@ -244,16 +268,29 @@ li {
   padding-bottom: 2rem;
 
   color: var(--color2);
+  text-align: center;
+  align-items: center;
 /*  background: grey;*/
 }
 
-.quote-performance-list {
-  display: table;
-  font-size: 1em;
+.quote-performance-table {
+  margin-top: 2rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .quote-performance-list-item {
-  display: table-cell;
+  font-size: 1.5em;
+  width: 10vw;
+}
+
+.quote-performance-list-header {
+  font-size: 1em;
+}
+
+.quote-performance-table-footer {
+  margin-top: 2rem;
+  opacity: .9;
 }
 
 .quote-stats {
@@ -262,14 +299,16 @@ li {
   grid-row-start: third-rw;
   grid-row-end: end;
 
-  padding-right: 2rem;
+  padding-right: 4rem;
   padding-left: 2rem;
   padding-top: 0rem;
-  padding-bottom: 2rem;
+  padding-bottom: 0rem;
 
   text-align: right;
   /*background: blue;*/
 }
+
+
 
 .quote-mrkcap {
   margin-top: 0rem;
@@ -280,6 +319,25 @@ li {
 .quote-peratio {
   margin-top: 0rem;
   margin-bottom: 0rem;
+  color: var(--color2);
+}
+
+.quote-latest {
+  margin-top: 0rem;
+  margin-bottom: 1vh;
+  color: var(--color2);
+  opacity: .8;
+}
+
+.quote-sector {
+  margin-top: 0rem;
+  margin-bottom: 1vh;
+  color: var(--color2);
+}
+
+.quote-exchange {
+  margin-top: 0rem;
+  margin-bottom: 0vh;
   color: var(--color2);
 }
 
@@ -295,7 +353,10 @@ li {
   grid-row-start: first-rw;
   grid-row-end: third-rw;
 
-  padding: 2rem;
+  padding-left: 4rem;
+  padding-right: 4rem;
+  padding-top: 0rem;
+  padding-bottom: 0rem;
 }
 
 .quote-news-list {
@@ -304,12 +365,12 @@ li {
 
 .quote-news-title {
   color: var(--color2);
-  margin-bottom: 1rem;
-  transition: .5s ease-in-out;
+  margin-bottom: 1vh;
+  transition: .25s ease-in;
 }
 
 .quote-news-title:hover {
-  transition: .5s ease-in-out;
+  transition: .25s ease-in;
   transform: translateX(-5%);
 }
 
@@ -317,9 +378,9 @@ li {
   border-top: 5px solid var(--color2);
   color: var(--color2);
   font-weight: bold;
-  margin-bottom: 1rem;
+  margin-bottom: 1vh;
   margin-top: 0rem;
-  padding-top: 1rem;
+  padding-top: 1vh;
 }
 
 .quote-update {
@@ -350,7 +411,7 @@ li {
 }
 
 .footer {
-  margin-top: 1rem; 
+  margin-top: 2vh; 
   width: 100%;
   text-align: center;
   z-index: 1;
@@ -370,14 +431,16 @@ a:hover {
 
 .btn-default {
   border-width: 0;
-  color: #eeeeee;
-  background: var(--color1);
   }
 
 .btn-default:hover {
     color: var(--color1);
     background: var(--color2);;
   }
+
+  .btn-default:focus {
+    outline: none;
+    }
 
 .btn-success {
     border-width: 0;
@@ -394,4 +457,8 @@ input {
   border-width: 0;
   background: var(--color2);
   color: var(--color1);
+}
+
+th {
+    text-align: center;
 }

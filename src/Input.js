@@ -23,6 +23,7 @@ class Input extends React.Component {
                   className={context.state.inputClass}
                   placeholder={context.state.placeholder}
                   onChange={context.handleChange}
+                  onClick={context.clearPlaceholder}
                   onKeyPress={context.handleKeyPress}
                   value={context.state.value}
                 />

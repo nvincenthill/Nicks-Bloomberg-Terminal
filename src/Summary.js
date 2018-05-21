@@ -18,7 +18,7 @@ class Summary extends React.Component {
                 : null}
             </p>
             <p className="quote-peratio">
-              Led by Supreme Commander {context.state.currentCompany
+              Led by {context.state.currentCEOTitle} {context.state.currentCompany
                 ? context.state.currentCompany.CEO
                 : null}
             </p>

@@ -29,7 +29,10 @@ class MyProvider extends Component {
       autocompleteDisplayed: true,
       headerDisplayed: true,
       footerDisplayed: true,
-      placeholder: "ex. AAPL, TSLA, GE"
+      placeholder: "ex. AAPL, TSLA, GE",
+      ceoTitles: ['Supreme Commander', 'Archduke', 'Baron', 'High Marshall', 'Emperor', 'King of Kings', 'Maharajadhiraja', 'Exhalted Shogun'],
+      currentCEOTitle: "",
+      currentChartButton: "5Y"
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -84,13 +87,15 @@ class MyProvider extends Component {
     this.setState({ autocompleteDisplayed: false });
     this.setState({ headerDisplayed: true });
     this.setState({ footerDisplayed: true });
-    this.setState({ value: "" });
     this.setState({ buttonText: "UPDATE" });
     // this.setState({ title: this.state.currentQuote.companyName });
     this.setState({ ChartData: data.chart });
 
     this.setState({ chartDataPrice: price });
     this.setState({ chartDataDates: dates });
+
+    let randomTitleIndex = Math.floor(Math.random() * (this.state.ceoTitles.length - 1)); 
+    this.setState({ currentCEOTitle: this.state.ceoTitles[randomTitleIndex] });
   };
 
   // find stock by name or ticker
@@ -137,9 +142,16 @@ class MyProvider extends Component {
     // filter array for required range
     //TODO
     // set state with updated range
-    this.setState({ chartDataDates: dates });
-    this.setState({ chartDataPrices: prices });
+    // this.setState({ chartDataDates: dates });
+    // this.setState({ chartDataPrices: prices });
+    this.setState({ currentChartButton: range });
   };
+
+  // clear placeholder
+  clearPlaceholder = () => {
+    this.setState({ placeholder: "" });
+    this.setState({ value: "" });
+  }
 
   // get universe on page load
   componentWillMount() {
@@ -155,7 +167,8 @@ class MyProvider extends Component {
           handleChange: this.handleChange,
           handleSubmit: this.handleSubmit,
           handleKeyPress: this.handleKeyPress,
-          handleChartRangeChange: this.handleChartRangeChange
+          handleChartRangeChange: this.handleChartRangeChange,
+          clearPlaceholder: this.clearPlaceholder
         }}
       >
         {this.props.children}

@@ -12,62 +12,82 @@ class Performance extends React.Component {
         {context => (
           <div className="quote-performance">
             <h2 className="quote-subtitle">PERFORMANCE</h2>
-              <ul className="quote-performance-list">
-                <li className="quote-performance-list-item">
-                  {context.state.currentStats
-                    ? ('5Y ' + (context.state.currentStats.year5ChangePercent * 100).toFixed(2))
-                    : null}
-                </li>
-                <li className="quote-performance-list-item">
-                  {context.state.currentStats
-                    ? ('2Y ' + (context.state.currentStats.year2ChangePercent * 100).toFixed(2))
-                    : null}
-                </li>
-                <li className="quote-performance-list-item">
-                  {context.state.currentStats
-                    ? ('1Y ' + (context.state.currentStats.year1ChangePercent * 100).toFixed(2))
-                    : null}
-                </li>
-                <li className="quote-performance-list-item">
-                  {context.state.currentStats
-                    ? ('YTD ' + (context.state.currentStats.ytdChangePercent * 100).toFixed(2))
-                    : null}
-                </li>
-                <li className="quote-performance-list-item">
-                  {context.state.currentStats
-                    ? ('1M ' + (context.state.currentStats.month1ChangePercent * 100).toFixed(2))
-                    : null}
-                </li>
-              </ul>
-
-              <table id="customers">
+            {context.state.currentStats ? (
+              <table className="quote-performance-table">
+              <tbody>
                 <tr>
-                  <th>Company</th>
-                  <th>Contact</th>
-                  <th>Country</th>
+                  <th className="quote-performance-list-header">5Y</th>
+                  <th className="quote-performance-list-header">2Y</th>
+                  <th className="quote-performance-list-header">1Y</th>
+                  <th className="quote-performance-list-header">YTD</th>
+                  <th className="quote-performance-list-header">1M</th>
+                  <th className="quote-performance-list-header">1D</th>
                 </tr>
                 <tr>
-                  <td>Alfreds Futterkiste</td>
-                  <td>Maria Anders</td>
-                  <td>Germany</td>
+                  <td
+                    className={
+                      context.state.currentStats.year5ChangePercent >= 0
+                        ? "quote-performance-list-item green-text"
+                        : "quote-performance-list-item red-text"
+                    }
+                  >
+                    {(
+                      context.state.currentStats.year5ChangePercent * 100
+                    ).toFixed(2) + "%"}
+                  </td>
+                  <td className={
+                      context.state.currentStats.year2ChangePercent >= 0
+                        ? "quote-performance-list-item green-text"
+                        : "quote-performance-list-item red-text"
+                    }>
+                    {(
+                      context.state.currentStats.year2ChangePercent * 100
+                    ).toFixed(2) + "%"}
+                  </td>
+                  <td className={
+                      context.state.currentStats.year1ChangePercent >= 0
+                        ? "quote-performance-list-item green-text"
+                        : "quote-performance-list-item red-text"
+                    }>
+                    {(
+                      context.state.currentStats.year1ChangePercent * 100
+                    ).toFixed(2) + "%"}
+                  </td>
+                  <td className={
+                      context.state.currentStats.ytdChangePercent >= 0
+                        ? "quote-performance-list-item green-text"
+                        : "quote-performance-list-item red-text"
+                    }>
+                    {(
+                      context.state.currentStats.ytdChangePercent * 100
+                    ).toFixed(2) + "%"}
+                  </td>
+                  <td className={
+                      context.state.currentStats.month1ChangePercent >= 0
+                        ? "quote-performance-list-item green-text"
+                        : "quote-performance-list-item red-text"
+                    }>
+                    {(
+                      context.state.currentStats.month1ChangePercent * 100
+                    ).toFixed(2) + "%"}
+                  </td>
+                  <td className={
+                      context.state.currentQuote.changePercent >= 0
+                        ? "quote-performance-list-item green-text"
+                        : "quote-performance-list-item red-text"
+                    }>
+                    {(
+                      context.state.currentQuote.changePercent * 100
+                    ).toFixed(2) + "%"}
+                  </td>
                 </tr>
-                <tr>
-                  <td>Berglunds snabbköp</td>
-                  <td>Christina Berglund</td>
-                  <td>Sweden</td>
-                </tr>
-                <tr>
-                  <td>Centro comercial Moctezuma</td>
-                  <td>Francisco Chang</td>
-                  <td>Mexico</td>
-                </tr>
-                <tr>
-                  <td>Ernst Handel</td>
-                  <td>Roland Mendel</td>
-                  <td>Austria</td>
-                </tr>
-
+                </tbody>
               </table>
+            ) : null}
+
+            <p className="quote-performance-table-footer">
+              *Calculated with raw price change, not total or annulized return
+            </p>
           </div>
         )}
       </MyContext.Consumer>
