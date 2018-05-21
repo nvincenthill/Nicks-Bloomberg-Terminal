@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import GithubCorner from 'react-github-corner';
 
 import Header from "./Header";
 import Footer from "./Footer";
@@ -184,7 +185,7 @@ class App extends Component {
         <MyContext.Consumer>
           {context => (
             <div className="App">
-              
+                <GithubCorner href="https://github.com/nvincenthill/stock-quote-app" octoColor="#222" bannerColor="#eeeeee"/>
                 <Header />
               
               <DataWell />
