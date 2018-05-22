@@ -1,11 +1,10 @@
 import React, { Component } from "react";
-import GithubCorner from 'react-github-corner';
-
+import GithubCorner from "react-github-corner";
+import datejs from "datejs";
 import Header from "./Header";
 import Footer from "./Footer";
 import DataWell from "./DataWell";
 import Input from "./Input";
-
 
 // first we will make a new context
 const MyContext = React.createContext();
@@ -18,7 +17,7 @@ class MyProvider extends Component {
     this.state = {
       title: "Shroomberg",
       currentQuote: {},
-      chartDataPrice: [],
+      chartDataPrices: [],
       chartDataDates: [],
       dataDisplayed: false,
       value: "",
@@ -31,7 +30,16 @@ class MyProvider extends Component {
       headerDisplayed: true,
       footerDisplayed: true,
       placeholder: "ex. AAPL, TSLA, GE",
-      ceoTitles: ['Supreme Commander', 'Archduke', 'Baron', 'High Marshall', 'Emperor', 'King of Kings', 'Maharajadhiraja', 'Exhalted Shogun'],
+      ceoTitles: [
+        "Supreme Commander",
+        "Archduke",
+        "Baron",
+        "High Marshall",
+        "Emperor",
+        "King of Kings",
+        "Maharajadhiraja",
+        "Exhalted Shogun"
+      ],
       currentCEOTitle: "",
       currentChartButton: "5Y",
       SPYData: {}
@@ -65,7 +73,7 @@ class MyProvider extends Component {
 
   // get data on a the S&P500
   getSPYData = async => {
-    let query = 'SPY';
+    let query = "SPY";
     let endpoint = `https://api.iextrading.com/1.0/stock/${query}/batch?types=stats,quote,chart&range=5y`;
 
     fetch(endpoint)
@@ -77,7 +85,7 @@ class MyProvider extends Component {
         }
       })
       .then(responseJson => {
-        this.setState({SPYData: responseJson});
+        this.setState({ SPYData: responseJson });
       })
       .catch(error => {
         console.log(error);
@@ -109,13 +117,17 @@ class MyProvider extends Component {
     this.setState({ dataDisplayed: true });
     this.setState({ autocompleteDisplayed: false });
     this.setState({ headerDisplayed: true });
-    this.setState({ buttonText: 'UPDATE' });
+    this.setState({ buttonText: "UPDATE" });
     this.setState({ footerDisplayed: true });
     this.setState({ ChartData: data.chart });
-    this.setState({ chartDataPrice: price });
+    this.setState({ chartDataPrices: price });
+    this.setState({ chartDataPricesImmutable: price });
     this.setState({ chartDataDates: dates });
+    this.setState({ chartDataDatesImmutable: dates });
 
-    let randomTitleIndex = Math.floor(Math.random() * (this.state.ceoTitles.length - 1)); 
+    let randomTitleIndex = Math.floor(
+      Math.random() * (this.state.ceoTitles.length - 1)
+    );
     this.setState({ currentCEOTitle: this.state.ceoTitles[randomTitleIndex] });
   };
 
@@ -158,29 +170,82 @@ class MyProvider extends Component {
   // handle chart range change
   handleChartRangeChange = range => {
     // take a copy of state
-    let dates = this.state.ChartDataDates;
-    let prices = this.state.ChartDataPrices;
-    // filter array for required range
-    //TODO
-    // set state with updated range
-    // this.setState({ chartDataDates: dates });
-    // this.setState({ chartDataPrices: prices });
+    let dates = this.state.chartDataDatesImmutable;
+    let prices = this.state.chartDataPricesImmutable;
+
+    // format button style
     this.setState({ currentChartButton: range });
+
+    // get today's date
+    let today = new Date();
+
+    // format as date objects
+    let newDates = [];
+
+    for (let i = 0; i < dates.length; i++) {
+      newDates.push(new Date(dates[i]));
+    }
+
+    // filter array for required range
+    let startDate;
+    if (range === '5Y') {
+      startDate = (5).years().ago();
+    } else if (range === '1Y') {
+      startDate = (1).years().ago();
+    } else if (range === '1M') {
+      startDate = (1).months().ago();
+    } else if (range === 'MTD') {
+      startDate = new Date(today.getFullYear(), today.getMonth(), 1);
+    } else if (range === 'YTD') {
+      startDate = Date.parse('Last December 31');
+    } else if (range === '1D') {
+      startDate = (1).days().ago();
+    };
+
+    let filteredDates = [];
+
+    for (let j = 0; j < newDates.length; j++) {
+      if (newDates[j] >= startDate && newDates[j] <= today) {
+        filteredDates.push(this.parseDateToReadable(newDates[j]));
+      }
+    }
+
+    this.setChartLength(prices, filteredDates);
+  };
+
+  setChartLength = (prices, dates) => {
+    // slice prices to correct length
+    prices = prices.slice(-dates.length);
+
+    // set state with updated range
+    this.setState({ chartDataDates: dates });
+    this.setState({ chartDataPrices: prices });
+  }
+
+  parseDateToReadable = date => {
+    let mm = date.getMonth() + 1; // getMonth() is zero-based
+    let dd = date.getDate();
+
+    return [
+      date.getFullYear(),
+      (mm > 9 ? "" : "0") + mm,
+      (dd > 9 ? "" : "0") + dd
+    ].join("-");
   };
 
   // clear placeholder
   clearPlaceholder = () => {
     this.setState({ placeholder: "" });
     this.setState({ value: "" });
-  }
+  };
 
   // handle click on title
   handleClick = () => {
     if (this.state.dataDisplayed === true) {
       this.setState({ dataDisplayed: false });
-      this.setState({ buttonText: 'SUBMIT' });
+      this.setState({ buttonText: "SUBMIT" });
     }
-  }
+  };
 
   // get universe on page load
   componentWillMount() {
@@ -215,9 +280,13 @@ class App extends Component {
         <MyContext.Consumer>
           {context => (
             <div className="App">
-                <GithubCorner href="https://github.com/nvincenthill/stock-quote-app" octoColor="#222" bannerColor="#eeeeee"/>
-                <Header />
-              
+              <GithubCorner
+                href="https://github.com/nvincenthill/stock-quote-app"
+                octoColor="#222"
+                bannerColor="#eeeeee"
+              />
+              <Header />
+
               <DataWell />
               <Footer />
             </div>

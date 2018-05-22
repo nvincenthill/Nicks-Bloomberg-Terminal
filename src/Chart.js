@@ -15,12 +15,12 @@ class Chart extends Component {
       scales: {
         xAxes: [
           {
-            display: false,
+            display: true,
             gridLines: {
               color: "#545454"
             },
             ticks: {
-              fontColor: "transparent",
+              fontColor: "white",
               fontSize: 10
             }
           }
@@ -64,7 +64,7 @@ class Chart extends Component {
           pointRadius: 1,
           pointHitRadius: 10,
           color: "#eeeeee",
-          data: this.props.chartDataPrice,
+          data: this.props.chartDataPrices,
           backgroundColor: "green"
         }
       ]
@@ -74,7 +74,7 @@ class Chart extends Component {
         {context => (
           <div>
             <div className="quote-chart-container">
-              <Line data={data} options={options} />
+              <Line redraw={true} data={data} options={options} />
             </div>
             <div className="quote-chart-buttons-container">
               <Button
