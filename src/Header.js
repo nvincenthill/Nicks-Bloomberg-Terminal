@@ -15,8 +15,8 @@ class Header extends React.Component {
       <MyContext.Consumer>
         {context => (
           <Collapse isOpened={context.state.headerDisplayed}>
-            <header className="header" onClick={() => context.handleClick()}>
-              <h1 className="App-title">{context.state.title}</h1>
+            <header className="header" >
+              <h1 className="App-title" onClick={() => context.handleClick()}>{context.state.title}</h1>
               <Input />
             </header>
           </Collapse>

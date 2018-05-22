@@ -206,14 +206,14 @@ li {
 }
 
 .quote-chart-container {
-  min-height: 30vh;
+  min-height: 35vh;
   z-index: 1;
   margin-left: 2em; 
   margin-right: 2em; 
 }
 
 .quote-chart-buttons-container {
-  margin-top: 2vh;
+  margin-top: 0vh;
   z-index: 10;
   /*display:inline-block;*/
 }
@@ -254,6 +254,7 @@ li {
   padding-top: 0rem;
   padding-bottom: 0rem;
 
+  font-size: .85em;
   text-align: left;
   /*background: red;*/
 }
@@ -282,17 +283,19 @@ li {
 }
 
 .quote-performance-list-item {
-  font-size: 1.5em;
+  font-size: 1em;
   width: 10vw;
 }
 
 .quote-performance-list-header {
   font-size: 1em;
+  padding-bottom: 1rem;
 }
 
 .quote-performance-table-footer {
   margin-top: 2rem;
   opacity: .9;
+  font-size: .85em;
 }
 
 .quote-stats {
@@ -307,6 +310,7 @@ li {
   padding-bottom: 0rem;
 
   text-align: right;
+  font-size: 1.25em;
   /*background: blue;*/
 }
 
@@ -359,6 +363,8 @@ li {
   padding-right: 4rem;
   padding-top: 0rem;
   padding-bottom: 0rem;
+
+  font-size: .85em;
 }
 
 .quote-news-list {
@@ -463,7 +469,7 @@ a:hover {
     color: var(--color2);
     background: var(--color1);
     border-width: 1px;
-    border-color: green;
+    border-color: var(--color2);
     }
 
 .btn-success:hover {

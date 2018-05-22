@@ -17,7 +17,7 @@ class Chart extends Component {
           {
             display: true,
             gridLines: {
-              color: "#545454"
+              color: "#eeeeee"
             },
             ticks: {
               fontColor: "white",
@@ -29,12 +29,17 @@ class Chart extends Component {
           {
             display: true,
             gridLines: {
-              color: "#545454"
+              color: "#eeeeee"
             },
             scaleLabel: {
+              fontColor: "white",
               display: true,
               fontSize: 20,
               labelString: "Price (USD)"
+            },
+            ticks: {
+              fontColor: "white",
+              fontSize: 10
             }
           }
         ]
@@ -63,7 +68,7 @@ class Chart extends Component {
           pointHoverBorderWidth: 2,
           pointRadius: 1,
           pointHitRadius: 10,
-          color: "#eeeeee",
+          color: "green",
           data: this.props.chartDataPrices,
           backgroundColor: "green"
         }
