@@ -33,7 +33,8 @@ class MyProvider extends Component {
       placeholder: "ex. AAPL, TSLA, GE",
       ceoTitles: ['Supreme Commander', 'Archduke', 'Baron', 'High Marshall', 'Emperor', 'King of Kings', 'Maharajadhiraja', 'Exhalted Shogun'],
       currentCEOTitle: "",
-      currentChartButton: "5Y"
+      currentChartButton: "5Y",
+      SPYData: {}
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -59,6 +60,27 @@ class MyProvider extends Component {
         console.log(error);
         this.setState({ inputClass: "animated shake search red" });
         setTimeout(() => this.setState({ inputClass: "search" }), 1000);
+      });
+  };
+
+  // get data on a the S&P500
+  getSPYData = async => {
+    let query = 'SPY';
+    let endpoint = `https://api.iextrading.com/1.0/stock/${query}/batch?types=stats,quote,chart&range=5y`;
+
+    fetch(endpoint)
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("Something went wrong");
+        }
+      })
+      .then(responseJson => {
+        this.setState({SPYData: responseJson});
+      })
+      .catch(error => {
+        console.log(error);
       });
   };
 
@@ -88,10 +110,7 @@ class MyProvider extends Component {
     this.setState({ autocompleteDisplayed: false });
     this.setState({ headerDisplayed: true });
     this.setState({ footerDisplayed: true });
-    this.setState({ buttonText: "UPDATE" });
-    // this.setState({ title: this.state.currentQuote.companyName });
     this.setState({ ChartData: data.chart });
-
     this.setState({ chartDataPrice: price });
     this.setState({ chartDataDates: dates });
 
@@ -157,6 +176,7 @@ class MyProvider extends Component {
   // get universe on page load
   componentWillMount() {
     this.getUniverse();
+    this.getSPYData();
   }
 
   render() {

@@ -52,6 +52,19 @@ class News extends React.Component {
                     : null}
                 </li>
               </a>
+              <a
+                href={
+                  context.state.currentQuote.latestPrice
+                    ? context.state.currentNews[3].url
+                    : null
+                }
+              >
+                <li className="quote-news-title">
+                  {context.state.currentQuote.latestPrice
+                    ? context.state.currentNews[3].headline
+                    : null}
+                </li>
+              </a>
             </ul>
           </div>
         )}

@@ -141,7 +141,7 @@ li {
 .quote-container {
   display: grid;
   grid-template-columns: [first-col] 2fr [second-col] 1fr [third-col] 3fr [fourth-col] 1fr [fifth-col] 2fr [end];
-  grid-template-rows: [first-rw] 1fr [second-rw] .5fr [third-rw] 1fr [fourth-rw] 1fr [end];
+  grid-template-rows: [first-rw] 1fr [second-rw] .25fr [third-rw] 1fr [fourth-rw] 1fr [end];
   max-height: 85vh;
   margin-bottom: 0;
   margin-top: 0;
@@ -205,9 +205,10 @@ li {
 }
 
 .quote-chart-container {
-  min-height: 35vh;
+  min-height: 30vh;
   z-index: 1;
-  /*margin-bottom: -5vh; */
+  margin-left: 2em; 
+  margin-right: 2em; 
 }
 
 .quote-chart-buttons-container {
