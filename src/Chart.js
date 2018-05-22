@@ -34,7 +34,7 @@ class Chart extends Component {
             scaleLabel: {
               display: true,
               fontSize: 20,
-              labelString: "Price ($)"
+              labelString: "Price (USD)"
             }
           }
         ]
