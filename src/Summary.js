@@ -11,17 +11,22 @@ class Summary extends React.Component {
       <MyContext.Consumer>
         {context => (
           <div className="quote-summary">
-            <h2 className="quote-subtitle">SUMMARY</h2>
-            <p className="quote-description">
-              {context.state.currentCompany
-                ? context.state.currentCompany.description
-                : null}
-            </p>
-            <p className="quote-peratio">
-              Led by {context.state.currentCEOTitle} {context.state.currentCompany
-                ? context.state.currentCompany.CEO
-                : null}
-            </p>
+            {context.state.currentCompany ? (
+              <div>
+                <h2 className="quote-subtitle">SUMMARY</h2>
+                <p className="quote-description">
+                  {context.state.currentCompany
+                    ? context.state.currentCompany.description
+                    : null}
+                </p>
+                {context.state.currentCompany.CEO ? (
+                  <p className="quote-peratio">
+                    Led by {context.state.currentCEOTitle}{" "}
+                    {context.state.currentCompany.CEO}
+                  </p>
+                ) : null}
+              </div>
+            ) : null}
           </div>
         )}
       </MyContext.Consumer>

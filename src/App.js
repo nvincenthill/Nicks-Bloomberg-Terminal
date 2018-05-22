@@ -46,6 +46,8 @@ class MyProvider extends Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
+    // this.updateQuote = this.updateQuote.bind(this);
+    this.getQuote = this.getQuote.bind(this);
   }
 
   // get data on a single ticker
@@ -68,6 +70,37 @@ class MyProvider extends Component {
         console.log(error);
         this.setState({ inputClass: "animated shake search red" });
         setTimeout(() => this.setState({ inputClass: "search" }), 1000);
+      });
+
+    this.getQuote(query);
+  };
+
+  // get live quote
+  getQuote = async query => {
+    let endpoint = `https://api.iextrading.com/1.0/stock/${query}/batch?types=quote`;
+    let quoteGetter = setInterval(() => {
+      if (this.state.value != query) {
+        clearInterval(quoteGetter);
+      }
+      this.updateQuote(endpoint);
+    }, 5000);
+  };
+
+  updateQuote = endpoint => {
+    console.log("getting quote");
+    fetch(endpoint)
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("Something went wrong");
+        }
+      })
+      .then(responseJson => {
+        this.setState({ currentQuote: responseJson.quote });
+      })
+      .catch(error => {
+        console.log(error);
       });
   };
 
@@ -158,6 +191,7 @@ class MyProvider extends Component {
 
   handleSubmit = () => {
     this.getData();
+    this.setState({ currentChartButton: "5Y" });
   };
 
   // handle a key pressed and submit if "enter" is pressed
@@ -188,19 +222,19 @@ class MyProvider extends Component {
 
     // filter array for required range
     let startDate;
-    if (range === '5Y') {
+    if (range === "5Y") {
       startDate = (5).years().ago();
-    } else if (range === '1Y') {
+    } else if (range === "1Y") {
       startDate = (1).years().ago();
-    } else if (range === '1M') {
+    } else if (range === "1M") {
       startDate = (1).months().ago();
-    } else if (range === 'MTD') {
+    } else if (range === "MTD") {
       startDate = new Date(today.getFullYear(), today.getMonth(), 1);
-    } else if (range === 'YTD') {
-      startDate = Date.parse('Last December 31');
-    } else if (range === '1D') {
+    } else if (range === "YTD") {
+      startDate = Date.parse("Last December 31");
+    } else if (range === "1D") {
       startDate = (1).days().ago();
-    };
+    }
 
     let filteredDates = [];
 
@@ -220,7 +254,7 @@ class MyProvider extends Component {
     // set state with updated range
     this.setState({ chartDataDates: dates });
     this.setState({ chartDataPrices: prices });
-  }
+  };
 
   parseDateToReadable = date => {
     let mm = date.getMonth() + 1; // getMonth() is zero-based

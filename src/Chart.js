@@ -79,7 +79,7 @@ class Chart extends Component {
         {context => (
           <div>
             <div className="quote-chart-container">
-              <Line redraw={true} data={data} options={options} />
+              <Line redraw={false} data={data} options={options} />
             </div>
             <div className="quote-chart-buttons-container">
               <Button

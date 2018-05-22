@@ -13,6 +13,7 @@ html {
   --main-font: "";
   --color1: #222;
   --color2: #eeeeee;
+  --color3: #F39F41;
 }
 
 /* inherit border-box on all elements in the universe and before and after */
@@ -40,12 +41,16 @@ body {
   font-weight: bold;
   font-size: 4.5rem;
   letter-spacing: -2px;
-
   grid-column-start: first-col;
   grid-column-end: second-col;
   grid-row-start: first-rw;
   grid-row-end: end;
   cursor: pointer;
+}
+
+.App-title:hover {
+  color: var(--color3);
+  transition: .5s ease-in;
 }
 
 .App-intro {
@@ -380,6 +385,7 @@ li {
 .quote-news-title:hover {
   transition: .25s ease-in;
   transform: translateX(-5%);
+  color: #F39F41;
 }
 
 .quote-subtitle {
@@ -429,14 +435,17 @@ li {
   justify-content: center;
   align-items: center;
   grid-template-columns: [first-col] 2fr [second-col] 1fr [third-col] 3fr [fourth-col] 1fr [fifth-col] 2fr [end];
-  grid-template-rows: [first-rw] 1fr [end];
+  grid-template-rows: [first-rw] 100% [end];
 }
 
 #footer-name {
   grid-column-start: first-col;
   grid-column-end: end;
-  grid-row-start: fourth-rw;
+  grid-row-start: first-rw;
   grid-row-end: end;
+
+  align-items: center;
+  margin-bottom: 0;
 }
 
 a:link {

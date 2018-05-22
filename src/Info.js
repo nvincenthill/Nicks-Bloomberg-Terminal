@@ -25,9 +25,9 @@ class Info extends React.Component {
                   </h3>
                 </a>
                 <h3 className="quote-price">
-                  ${context.state.currentQuote.latestPrice
-                    ? context.state.currentQuote.latestPrice.toFixed(2)
-                    : null}
+                  ${context.state.currentQuote.iexRealtimePrice
+                    ? context.state.currentQuote.iexRealtimePrice.toFixed(2)
+                    : context.state.currentQuote.latestPrice.toFixed(2)}
                 </h3>
                 <h4
                   className={
