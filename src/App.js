@@ -109,6 +109,7 @@ class MyProvider extends Component {
     this.setState({ dataDisplayed: true });
     this.setState({ autocompleteDisplayed: false });
     this.setState({ headerDisplayed: true });
+    this.setState({ buttonText: 'UPDATE' });
     this.setState({ footerDisplayed: true });
     this.setState({ ChartData: data.chart });
     this.setState({ chartDataPrice: price });
@@ -173,6 +174,14 @@ class MyProvider extends Component {
     this.setState({ value: "" });
   }
 
+  // handle click on title
+  handleClick = () => {
+    if (this.state.dataDisplayed === true) {
+      this.setState({ dataDisplayed: false });
+      this.setState({ buttonText: 'SUBMIT' });
+    }
+  }
+
   // get universe on page load
   componentWillMount() {
     this.getUniverse();
@@ -189,7 +198,8 @@ class MyProvider extends Component {
           handleSubmit: this.handleSubmit,
           handleKeyPress: this.handleKeyPress,
           handleChartRangeChange: this.handleChartRangeChange,
-          clearPlaceholder: this.clearPlaceholder
+          clearPlaceholder: this.clearPlaceholder,
+          handleClick: this.handleClick
         }}
       >
         {this.props.children}

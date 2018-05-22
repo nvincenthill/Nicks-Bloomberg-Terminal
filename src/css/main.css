@@ -45,6 +45,7 @@ body {
   grid-column-end: second-col;
   grid-row-start: first-rw;
   grid-row-end: end;
+  cursor: pointer;
 }
 
 .App-intro {
@@ -118,7 +119,7 @@ li {
   width: 20%;
   height: 5vh;
   z-index: 2;
-  font-size: 1em;
+  font-size: 1.75em;
   padding: 0;
   /*font-weight: bold;*/
   /*margin-top: 1rem;*/
@@ -459,14 +460,22 @@ a:hover {
 
 .btn-success {
     border-width: 0;
-    color: var(--color1);
-    background: var(--color2);
+    color: var(--color2);
+    background: var(--color1);
+    border-width: 1px;
+    border-color: green;
     }
 
 .btn-success:hover {
-      color: var(--color2);
+      color: var(--color1);
       background: green;
   }
+
+  .btn-success:focus {
+        color: var(--color2);
+        background: green;
+        outline: none;
+    }
 
 input {
   border-width: 0;
