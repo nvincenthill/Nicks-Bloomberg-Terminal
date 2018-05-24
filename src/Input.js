@@ -16,8 +16,6 @@ class Input extends React.Component {
       <MyContext.Consumer>
         {context => (
           <React.Fragment>
-            <div className="input-container">
-              <div className="input">
                 <input
                   type="text"
                   className={context.state.inputClass}
@@ -27,11 +25,9 @@ class Input extends React.Component {
                   onKeyPress={context.handleKeyPress}
                   value={context.state.value}
                 />
-              </div>
               <Button className="btn-success submit-button" onClick={context.handleSubmit}>
                 {context.state.buttonText}
               </Button>
-            </div>
           </React.Fragment>
         )}
       </MyContext.Consumer>

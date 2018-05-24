@@ -83,21 +83,6 @@ body {
   padding: 0;
 }
 
-.input-container {
-  /*position: fixed;*/
-  width: 100%;
-  /*top: 50vh;*/
-  /*display: flex;*/
-  /*align-items: center;*/
-  /*margin-top: 2rem;*/
-  justify-content: center;
-  /*margin-left: 4rem;*/
-  grid-column-start: first-col;
-  grid-column-end: end;
-  grid-row-start: second-rw;
-  grid-row-end: end;
-}
-
 .input {
   /*max-width: 40vw;*/
   padding: 0;
@@ -503,4 +488,8 @@ input {
 
 th {
     text-align: center;
+}
+
+.corner {
+  display: none;
 }
