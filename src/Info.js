@@ -11,19 +11,17 @@ class Info extends React.Component {
       <MyContext.Consumer>
         {context => (
           <div>
-
             {context.state.currentCompany ? (
               <div className="quote-info">
-              <h2 className="quote-ticker">
-                {context.state.currentQuote.symbol}
-              </h2>
-                <a
-                  href={context.state.currentCompany.website}
-                >
-                  <h3 className="quote-name">
+                <a href={context.state.currentCompany.website}>
+                  <h2 className="quote-subtitle">
                     {context.state.currentQuote.companyName}
-                  </h3>
+                  </h2>
                 </a>
+                <h2 className="quote-ticker">
+                  {context.state.currentQuote.symbol}
+                </h2>
+
                 <h3 className="quote-price">
                   ${context.state.currentQuote.iexRealtimePrice
                     ? context.state.currentQuote.iexRealtimePrice.toFixed(2)
@@ -40,8 +38,8 @@ class Info extends React.Component {
                 </h4>
 
                 <p className="quote-latest">
-                  As of the{" "}
-                  {context.state.currentQuote.latestTime} {context.state.currentQuote.latestSource}
+                  As of the {context.state.currentQuote.latestTime}{" "}
+                  {context.state.currentQuote.latestSource}
                 </p>
 
                 <p className="quote-exchange">
@@ -60,17 +58,16 @@ class Info extends React.Component {
                 </p>
 
                 <p className="quote-mrkcap">
-                  52 Week High: ${(
-                    context.state.currentQuote.week52High
-                  ).toFixed(2)}
+                  52 Week High: ${context.state.currentQuote.week52High.toFixed(
+                    2
+                  )}
                 </p>
 
                 <p className="quote-mrkcap">
-                  52 Week Low: ${(
-                    context.state.currentQuote.week52Low
-                  ).toFixed(2)}
+                  52 Week Low: ${context.state.currentQuote.week52Low.toFixed(
+                    2
+                  )}
                 </p>
-
               </div>
             ) : null}
           </div>

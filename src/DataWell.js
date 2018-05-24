@@ -1,15 +1,14 @@
 import React from "react";
-import { Well } from "react-bootstrap";
-import { MyContext } from "./App.js";
+
+import Info from "./Info";
 import Chart from "./Chart";
 import Summary from "./Summary";
 import Performance from "./Performance";
 import Stats from "./Stats";
-import Info from "./Info";
 import News from "./News";
-import Input from "./Input";
-import { Button } from "react-bootstrap";
+
 import { Collapse } from "react-collapse";
+import { MyContext } from "./App.js";
 
 class DataWell extends React.Component {
   componentWillMount() {}
@@ -29,7 +28,11 @@ class DataWell extends React.Component {
                 <Chart
                   chartDataPrices={context.state.chartDataPrices}
                   chartDataDates={context.state.chartDataDates}
-                  name={context.state.currentQuote.symbol}
+                  symbol={context.state.currentQuote.symbol}
+                  name={context.state.currentQuote.companyName}
+                  chartShouldRedraw={context.state.chartShouldRedraw}
+                  currentChartButton={context.state.currentChartButton}
+                  setRedraw={context.state.setRedraw}
                 />
               </div>
               <Stats />

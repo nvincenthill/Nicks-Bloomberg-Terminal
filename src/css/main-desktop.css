@@ -13,6 +13,7 @@
     }
 
     .App-title {
+        color: var(--color3);
         text-align: left;
         margin-bottom: 0;
         margin-top: 0;
@@ -170,6 +171,7 @@
         z-index: 1;
         margin-left: 2em;
         margin-right: 2em;
+        margin-bottom: 1vh;
     }
 
     .quote-chart-buttons-container {
@@ -342,8 +344,8 @@
     }
 
     .quote-subtitle {
-        border-top: 5px solid var(--color2);
-        color: var(--color2);
+        border-top: 5px solid var(--color3);
+        color: var(--color3);
         font-weight: bold;
         margin-bottom: 1vh;
         margin-top: 0rem;
@@ -409,23 +411,23 @@
 
     .btn-success {
         border-width: 0;
-        color: var(--color2);
+        color: var(--color3);
         background: var(--color1);
-        border-width: 1px;
-        border-color: var(--color2);
+        border-width: 5px;
+        border-color: var(--color3);
     }
 
     .btn-success:hover {
-        color: var(--color1);
+        color: var(--color2);
         background: green;
         outline: none;
+        border-color: var(--color3);
     }
 
     .btn-success:focus {
         color: var(--color2);
         background: var(--color1);
         border-color: var(--color2);
-        border-width: 1px;
         outline: none;
     }
 

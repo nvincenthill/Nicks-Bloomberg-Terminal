@@ -1,6 +1,5 @@
 import React from "react";
 import { MyContext } from "./App.js";
-import { Collapse } from "react-collapse";
 
 class Footer extends React.Component {
   componentWillMount() {}

@@ -1,7 +1,5 @@
 import React from "react";
 import { MyContext } from "./App.js";
-import Autocomplete from "./Autocomplete";
-import { Collapse } from "react-collapse";
 import { Button } from "react-bootstrap";
 
 class Input extends React.Component {

@@ -4,8 +4,36 @@ import { MyContext } from "./App.js";
 import { Button } from "react-bootstrap";
 
 class Chart extends Component {
+  componentDidMount() {
+    window.addEventListener("resize", this.props.setRedraw, false);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.props.setRedraw, false);
+  }
+
   render() {
+    let gainedOrLost =
+      this.props.chartDataPrices[this.props.chartDataPrices.length - 1] -
+      this.props.chartDataPrices[0];
+    
+    let date = (this.props.currentChartButton === '1D' ? 'DoD' : 'since ' + this.props.chartDataDates[0])
+
+    let chartTitle = `${this.props.name} stock ${gainedOrLost > 0 ? 'gained' : 'lost'} ${(
+      (this.props.chartDataPrices[this.props.chartDataPrices.length - 1] -
+        this.props.chartDataPrices[0]) *
+      100 /
+      this.props.chartDataPrices[0]
+    ).toFixed(2)}% ${date}`;
+    
+
     const options = {
+      title: {
+        display: true,
+        text: chartTitle,
+        fontColor: "#F39F41",
+        fontSize: 20
+      },
       legend: {
         display: false
       },
@@ -17,29 +45,35 @@ class Chart extends Component {
           {
             display: true,
             gridLines: {
-              color: "#eeeeee"
+              color: "#F39F41"
             },
             ticks: {
               fontColor: "white",
-              fontSize: 10
-            }
+              fontSize: 10,
+              padding: 5
+            },
+            type: "time"
           }
         ],
         yAxes: [
           {
             display: true,
             gridLines: {
-              color: "#eeeeee"
+              color: "#F39F41"
             },
             scaleLabel: {
-              fontColor: "white",
-              display: true,
-              fontSize: 20,
-              labelString: "Price (USD)"
+              // fontColor: "white",
+              // display: true,
+              // fontSize: 20,
+              // labelString: "Price (USD)"
             },
             ticks: {
               fontColor: "white",
-              fontSize: 10
+              fontSize: 10,
+              padding: 5,
+              callback: function(value) {
+                return "$" + value;
+              }
             }
           }
         ]
@@ -68,9 +102,10 @@ class Chart extends Component {
           pointHoverBorderWidth: 2,
           pointRadius: 1,
           pointHitRadius: 10,
-          color: "green",
+          color: "rgba(0, 128, 0, .5)",
           data: this.props.chartDataPrices,
-          backgroundColor: "green"
+          backgroundColor: "rgba(0, 128, 0, .5)",
+          hoverBackgroundColor: "rgba(0, 128, 0, 1)"
         }
       ]
     };
@@ -79,7 +114,11 @@ class Chart extends Component {
         {context => (
           <div>
             <div className="quote-chart-container">
-              <Line redraw={false} data={data} options={options} />
+              <Line
+                redraw={context.state.chartShouldRedraw}
+                data={data}
+                options={options}
+              />
             </div>
             <div className="quote-chart-buttons-container">
               <Button

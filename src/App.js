@@ -1,11 +1,11 @@
 import React, { Component } from "react";
+
 import GithubCorner from "react-github-corner";
-import datejs from "datejs";
 import Header from "./Header";
 import Footer from "./Footer";
 import DataWell from "./DataWell";
-import Input from "./Input";
 import { Fade } from "react-reveal";
+import datejs from "datejs";
 
 // first we will make a new context
 const MyContext = React.createContext();
@@ -43,7 +43,8 @@ class MyProvider extends Component {
       ],
       currentCEOTitle: "",
       currentChartButton: "5Y",
-      SPYData: {}
+      SPYData: {},
+      chartShouldRedraw: false
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -76,19 +77,44 @@ class MyProvider extends Component {
     this.getQuote(query);
   };
 
+  // get 1D price data on a single ticker
+  getOneDayChartData = async => {
+    let query = this.state.value;
+    let endpoint = `https://api.iextrading.com/1.0/stock/${query}/batch?types=chart&range=1d`;
+
+    fetch(endpoint)
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("Something went wrong");
+        }
+      })
+      .then(responseJson => {
+        this.addOneDayData(responseJson);
+      })
+      .catch(error => {
+        console.log(error);
+        this.setState({ inputClass: "animated shake search red" });
+        setTimeout(() => this.setState({ inputClass: "search" }), 1000);
+      });
+
+    this.getQuote(query);
+  };
+
   // get live quote
   getQuote = async query => {
     let endpoint = `https://api.iextrading.com/1.0/stock/${query}/batch?types=quote`;
     let quoteGetter = setInterval(() => {
-      if (this.state.value != query) {
+      if (this.state.value !== query) {
         clearInterval(quoteGetter);
       }
       this.updateQuote(endpoint);
-    }, 5000);
+    }, 1000);
   };
 
+  // update IEX live price
   updateQuote = endpoint => {
-    console.log("getting quote");
     fetch(endpoint)
       .then(response => {
         if (response.ok) {
@@ -134,30 +160,51 @@ class MyProvider extends Component {
       .then(data => this.setState({ universe: data }));
   };
 
+
+  addOneDayData = data => {
+    let OneDayPrices = [];
+    let OneDayDates = [];
+    console.log(data);
+    for (let i = 0; i < data.chart.length; i++) {
+      let time = data.chart[i].label + " " + data.chart[i].date;
+      let formattedTime = Date.parse(time);
+      OneDayPrices.push(data.chart[i].close);
+      OneDayDates.push(formattedTime);
+    }
+
+    this.setState({ OneDayPrices: OneDayPrices, OneDayDates: OneDayDates });
+  };
+
+
   // add data to state
   addData = data => {
-    let price = [];
+    let prices = [];
     let dates = [];
 
     for (let i = 0; i < data.chart.length; i++) {
-      price.push(data.chart[i].close);
+      prices.push(data.chart[i].close);
       dates.push(data.chart[i].date);
     }
-    this.setState({ currentData: data });
-    this.setState({ currentNews: data.news });
-    this.setState({ currentQuote: data.quote });
-    this.setState({ currentStats: data.stats });
-    this.setState({ currentCompany: data.company });
-    this.setState({ dataDisplayed: true });
-    this.setState({ autocompleteDisplayed: false });
-    this.setState({ headerDisplayed: true });
-    this.setState({ buttonText: "UPDATE" });
-    this.setState({ footerDisplayed: true });
-    this.setState({ ChartData: data.chart });
-    this.setState({ chartDataPrices: price });
-    this.setState({ chartDataPricesImmutable: price });
-    this.setState({ chartDataDates: dates });
-    this.setState({ chartDataDatesImmutable: dates });
+
+    let record = Array.from(prices);
+
+    this.setState({
+      currentData: data,
+      currentNews: data.news,
+      currentQuote: data.quote,
+      currentStats: data.stats,
+      currentCompany: data.company,
+      dataDisplayed: true,
+      autocompleteDisplayed: false,
+      headerDisplayed: true,
+      buttonText: "UPDATE",
+      footerDisplayed: true,
+      ChartData: data.chart,
+      chartDataPrices: prices,
+      chartDataPricesRecord: record,
+      chartDataDates: dates,
+      chartDataDatesImmutable: dates
+    });
 
     let randomTitleIndex = Math.floor(
       Math.random() * (this.state.ceoTitles.length - 1)
@@ -176,22 +223,24 @@ class MyProvider extends Component {
     });
   };
 
-  //display matching stocks
+  // display matching stocks
   displayMatches = () => {
     let matchArray = this.findMatches(this.state.value, this.state.universe);
     matchArray = matchArray.slice(0, 50);
-    console.log(matchArray, this.state.value);
     this.setState({ matchArray: matchArray });
   };
 
+  // handle user input changes
   handleChange = event => {
     this.setState({ value: event.target.value });
     this.setState({ autocompleteDisplayed: true });
     this.displayMatches();
   };
 
+  // handle submit button press
   handleSubmit = () => {
     this.getData();
+    this.getOneDayChartData();
     this.setState({ currentChartButton: "5Y" });
   };
 
@@ -206,7 +255,6 @@ class MyProvider extends Component {
   handleChartRangeChange = range => {
     // take a copy of state
     let dates = this.state.chartDataDatesImmutable;
-    let prices = this.state.chartDataPricesImmutable;
 
     // format button style
     this.setState({ currentChartButton: range });
@@ -238,25 +286,35 @@ class MyProvider extends Component {
     }
 
     let filteredDates = [];
-
     for (let j = 0; j < newDates.length; j++) {
       if (newDates[j] >= startDate && newDates[j] <= today) {
         filteredDates.push(this.parseDateToReadable(newDates[j]));
       }
     }
 
-    this.setChartLength(prices, filteredDates);
+    if (range === "1D") {
+      this.setChartLength(this.state.OneDayDates, true);
+    } else {
+      this.setChartLength(filteredDates, false);
+    }
+
   };
 
-  setChartLength = (prices, dates) => {
+  setChartLength = (dates, OneDayGraph) => {
     // slice prices to correct length
-    prices = prices.slice(-dates.length);
-
+    let newPrices = this.state.chartDataPricesRecord.slice(-dates.length);
     // set state with updated range
     this.setState({ chartDataDates: dates });
-    this.setState({ chartDataPrices: prices });
+    if (OneDayGraph) {
+      this.setState({ chartDataPrices: this.state.OneDayPrices });
+    } else {
+      this.setState({ chartDataPrices: newPrices });
+    }
+
+    this.setRedraw();
   };
 
+  // parse date to a human readable format
   parseDateToReadable = date => {
     let mm = date.getMonth() + 1; // getMonth() is zero-based
     let dd = date.getDate();
@@ -282,12 +340,19 @@ class MyProvider extends Component {
     }
   };
 
+  // set chart redraw state
+  setRedraw = () => {
+    this.setState({ chartShouldRedraw: true });
+    setTimeout(() => this.setState({ chartShouldRedraw: false }), 100);
+  };
+
   // get universe on page load
   componentWillMount() {
     this.getUniverse();
     this.getSPYData();
   }
 
+  // render context provider component
   render() {
     return (
       <MyContext.Provider
@@ -299,7 +364,8 @@ class MyProvider extends Component {
           handleKeyPress: this.handleKeyPress,
           handleChartRangeChange: this.handleChartRangeChange,
           clearPlaceholder: this.clearPlaceholder,
-          handleClick: this.handleClick
+          handleClick: this.handleClick,
+          setRedraw: this.setRedraw
         }}
       >
         {this.props.children}
@@ -315,18 +381,18 @@ class App extends Component {
         <MyContext.Consumer>
           {context => (
             <Fade>
-            <div className="App">
-              <GithubCorner
-                href="https://github.com/nvincenthill/stock-quote-app"
-                octoColor="#222"
-                bannerColor="#eeeeee"
-                className="corner"
-                size="100"
-              />
-              <Header />
-              <DataWell />
-              <Footer />
-            </div>
+              <div className="App">
+                <GithubCorner
+                  href="https://github.com/nvincenthill/stock-quote-app"
+                  octoColor="#222"
+                  bannerColor="#eeeeee"
+                  className="corner"
+                  size="100"
+                />
+                <Header />
+                <DataWell />
+                <Footer />
+              </div>
             </Fade>
           )}
         </MyContext.Consumer>
@@ -335,5 +401,8 @@ class App extends Component {
   }
 }
 
+// export app component
 export default App;
+
+// export context
 export { MyContext };
