@@ -82,6 +82,10 @@ body {
   padding: 0;
 }
 
+ul {
+  list-style-type: none;
+}
+
 .input {
   /*max-width: 40vw;*/
   padding: 0;
@@ -117,8 +121,6 @@ body {
 .red {
   border-color: red;
 }
-
-
 
 .red-text {
   color: red;

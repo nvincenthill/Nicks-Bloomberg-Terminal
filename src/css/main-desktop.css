@@ -311,6 +311,7 @@
     }
 
     .quote-news {
+        text-align: right;
         grid-column-start: fifth-col;
         grid-column-end: end;
         grid-row-start: first-rw;
@@ -325,7 +326,7 @@
     }
 
     .quote-news-list {
-        text-align: left;
+        text-align: right;
     }
 
     .quote-news-title {
@@ -417,11 +418,14 @@
     .btn-success:hover {
         color: var(--color1);
         background: green;
+        outline: none;
     }
 
     .btn-success:focus {
         color: var(--color2);
-        background: green;
+        background: var(--color1);
+        border-color: var(--color2);
+        border-width: 1px;
         outline: none;
     }
 

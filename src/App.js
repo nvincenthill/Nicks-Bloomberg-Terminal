@@ -5,6 +5,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import DataWell from "./DataWell";
 import Input from "./Input";
+import { Fade } from "react-reveal";
 
 // first we will make a new context
 const MyContext = React.createContext();
@@ -313,17 +314,20 @@ class App extends Component {
       <MyProvider>
         <MyContext.Consumer>
           {context => (
+            <Fade>
             <div className="App">
               <GithubCorner
                 href="https://github.com/nvincenthill/stock-quote-app"
                 octoColor="#222"
                 bannerColor="#eeeeee"
                 className="corner"
+                size="100"
               />
               <Header />
               <DataWell />
               <Footer />
             </div>
+            </Fade>
           )}
         </MyContext.Consumer>
       </MyProvider>
