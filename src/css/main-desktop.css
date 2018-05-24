@@ -278,6 +278,7 @@
     .quote-mrkcap {
         margin-top: 0rem;
         margin-bottom: 0rem;
+        font-size: 1.25em;
         color: var(--color2);
     }
 

@@ -14,7 +14,7 @@ class Info extends React.Component {
             {context.state.currentCompany ? (
               <div className="quote-info">
                 <a href={context.state.currentCompany.website}>
-                  <h2 className="quote-subtitle">
+                  <h2 className="quote-subtitle" id="quote-name">
                     {context.state.currentQuote.companyName}
                   </h2>
                 </a>
@@ -22,6 +22,7 @@ class Info extends React.Component {
                   {context.state.currentQuote.symbol}
                 </h2>
 
+                <div>
                 <h3 className="quote-price">
                   ${context.state.currentQuote.iexRealtimePrice
                     ? context.state.currentQuote.iexRealtimePrice.toFixed(2)
@@ -36,7 +37,7 @@ class Info extends React.Component {
                 >
                   {(context.state.currentQuote.changePercent * 100).toFixed(2)}%
                 </h4>
-
+                </div>
                 <p className="quote-latest">
                   As of the {context.state.currentQuote.latestTime}{" "}
                   {context.state.currentQuote.latestSource}
@@ -52,12 +53,12 @@ class Info extends React.Component {
                     : null}
                 </p>
                 <p className="quote-mrkcap">
-                  Market Cap: ${(
+                  Market Capitalization: <b>${(
                     context.state.currentQuote.marketCap / 1000000000
-                  ).toFixed(2)}B
+                  ).toFixed(2)}B</b>
                 </p>
 
-                <p className="quote-mrkcap">
+                {/* <p className="quote-mrkcap">
                   52 Week High: ${context.state.currentQuote.week52High.toFixed(
                     2
                   )}
@@ -67,7 +68,7 @@ class Info extends React.Component {
                   52 Week Low: ${context.state.currentQuote.week52Low.toFixed(
                     2
                   )}
-                </p>
+                </p> */}
               </div>
             ) : null}
           </div>

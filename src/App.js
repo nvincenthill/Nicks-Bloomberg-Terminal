@@ -104,7 +104,7 @@ class MyProvider extends Component {
 
   // get live quote
   getQuote = async query => {
-    let endpoint = `https://api.iextrading.com/1.0/stock/${query}/batch?types=quote`;
+    let endpoint = `https://api.iextrading.com/1.0/stock/${query}/batch?types=quote,chart&range=1d`;
     let quoteGetter = setInterval(() => {
       if (this.state.value !== query) {
         clearInterval(quoteGetter);
@@ -125,6 +125,7 @@ class MyProvider extends Component {
       })
       .then(responseJson => {
         this.setState({ currentQuote: responseJson.quote });
+        this.addOneDayData(responseJson);
       })
       .catch(error => {
         console.log(error);
@@ -164,7 +165,6 @@ class MyProvider extends Component {
   addOneDayData = data => {
     let OneDayPrices = [];
     let OneDayDates = [];
-    console.log(data);
     for (let i = 0; i < data.chart.length; i++) {
       let time = data.chart[i].label + " " + data.chart[i].date;
       let formattedTime = Date.parse(time);
@@ -174,7 +174,6 @@ class MyProvider extends Component {
 
     this.setState({ OneDayPrices: OneDayPrices, OneDayDates: OneDayDates });
   };
-
 
   // add data to state
   addData = data => {
