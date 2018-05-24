@@ -110,7 +110,7 @@ class MyProvider extends Component {
         clearInterval(quoteGetter);
       }
       this.updateQuote(endpoint);
-    }, 1000);
+    }, 10000);
   };
 
   // update IEX live price
