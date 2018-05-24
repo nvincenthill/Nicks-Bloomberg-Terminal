@@ -1,0 +1,6 @@
+@media only screen and (min-width: 600px) {
+    /* For tablets: */
+    body {
+      background: yellow;
+    }
+}

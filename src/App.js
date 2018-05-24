@@ -269,8 +269,8 @@ class MyProvider extends Component {
 
   // clear placeholder
   clearPlaceholder = () => {
-    this.setState({ placeholder: "" });
-    this.setState({ value: "" });
+    // this.setState({ placeholder: "" });
+    // this.setState({ value: "" });
   };
 
   // handle click on title
@@ -318,9 +318,9 @@ class App extends Component {
                 href="https://github.com/nvincenthill/stock-quote-app"
                 octoColor="#222"
                 bannerColor="#eeeeee"
+                className="corner"
               />
               <Header />
-
               <DataWell />
               <Footer />
             </div>

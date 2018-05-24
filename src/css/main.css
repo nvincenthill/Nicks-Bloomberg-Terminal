@@ -1,3 +1,5 @@
+/* For mobile phones: */
+
 /* Variable declaration */
 
 :root {
@@ -34,6 +36,25 @@ body {
   padding-bottom: 100p
 }
 
+.header {
+  background-color: #222;
+  padding-right: 2rem;
+  padding-left: 2rem;
+  padding-top: 0rem;
+  padding-bottom: 0rem;
+  color: var(--color2);
+  margin-bottom: 0rem;
+  margin-top: 0;
+  height: 50vh;
+  top: 0;
+
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  grid-template-columns: [first-col] 2fr [second-col] 1fr [third-col] 3fr [fourth-col] 1fr [fifth-col] 2fr [end];
+  grid-template-rows: [first-rw] 1fr [second-rw] 1fr [end];
+}
+
 .App-title {
   /*font-size: 1.5em;*/
   margin-bottom: 0;
@@ -42,9 +63,9 @@ body {
   font-size: 4.5rem;
   letter-spacing: -2px;
   grid-column-start: first-col;
-  grid-column-end: second-col;
+  grid-column-end: end;
   grid-row-start: first-rw;
-  grid-row-end: end;
+  grid-row-end: second-rw;
   cursor: pointer;
 }
 
@@ -70,15 +91,15 @@ body {
   /*align-items: center;*/
   /*margin-top: 2rem;*/
   justify-content: center;
-  margin-left: 4rem;
-  grid-column-start: second-col;
-  grid-column-end: fifth-col;
-  grid-row-start: first-rw;
-  grid-row-end: first-rw;
+  /*margin-left: 4rem;*/
+  grid-column-start: first-col;
+  grid-column-end: end;
+  grid-row-start: second-rw;
+  grid-row-end: end;
 }
 
 .input {
-  max-width: 40vw;
+  /*max-width: 40vw;*/
   padding: 0;
 }
 
@@ -91,7 +112,7 @@ body {
   width: 40vw;
   z-index: 2;
   font-size: 2em;
-  caret-color: transparent;
+  /*caret-color: var(--color3);*/
   padding: 0;
 }
 
@@ -404,25 +425,6 @@ li {
   grid-row-end: end;
 
   background: var(--color2);
-}
-
-.header {
-  background-color: #222;
-  padding-right: 2rem;
-  padding-left: 2rem;
-  padding-top: 0rem;
-  padding-bottom: 0rem;
-  color: var(--color2);
-  margin-bottom: 0rem;
-  margin-top: 0;
-  height: 10vh;
-  top: 0;
-
-  display: grid;
-  justify-content: center;
-  align-items: center;
-  grid-template-columns: [first-col] 2fr [second-col] 1fr [third-col] 3fr [fourth-col] 1fr [fifth-col] 2fr [end];
-  grid-template-rows: [first-rw] 1fr [end];
 }
 
 .footer {
