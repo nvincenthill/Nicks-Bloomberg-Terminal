@@ -45,20 +45,19 @@ body {
   color: var(--color2);
   margin-bottom: 0rem;
   margin-top: 0;
-  height: 50vh;
+  height: 40vh;
   top: 0;
 
   display: grid;
   justify-content: center;
   align-items: center;
-  grid-template-columns: [first-col] 2fr [second-col] 1fr [third-col] 3fr [fourth-col] 1fr [fifth-col] 2fr [end];
-  grid-template-rows: [first-rw] 1fr [second-rw] 1fr [end];
+  grid-template-columns: [first-col] 1fr [end];
+  grid-template-rows: [first-rw] 1fr [second-rw] 1fr [third-rw] 1fr [end];
 }
 
 .App-title {
-  /*font-size: 1.5em;*/
   margin-bottom: 0;
-  margin-top: 0;
+  margin-top: 3vh;
   font-weight: bold;
   font-size: 4.5rem;
   letter-spacing: -2px;
@@ -94,11 +93,13 @@ body {
   text-align: center;
   /*width: 100%;*/
   height: 5vh;
-  width: 80vw;
+  /*width: 80vw;*/
   z-index: 2;
   font-size: 1em;
-  /*caret-color: var(--color3);*/
-  padding: 0;
+  grid-column-start: first-col;
+  grid-column-end: end;
+  grid-row-start: second-rw;
+  grid-row-end: end;
 }
 
 .submit-button {
@@ -111,29 +112,6 @@ body {
   font-size: 1.75em;
   /*font-weight: bold;*/
   /*margin-top: 1rem;*/
-}
-
-.autocomplete {
-  position: relative;
-  /*bottom: -1rem;*/
-  /*background: red;*/
-  /*display: none;*/
-  text-align: center;
-  /*background: red;*/
-  max-width: 50vw;
-  text-overflow: clip;
-}
-
-ul {
-  list-style-type: none;
-  padding-left: 0;
-  padding-top: 0.5rem;
-  margin-bottom: 0;
-  text-overflow: clip;
-}
-
-li {
-  text-overflow: clip;
 }
 
 .red {
