@@ -161,25 +161,19 @@
         padding-right: 0rem;
         padding-top: 0rem;
         padding-bottom: 0rem;
-    }
-
-    .quote-chart-container {
-        display: block;
         grid-column-start: second-col;
         grid-column-end: fifth-col;
         grid-row-start: first-rw;
-        grid-row-end: third-rw;
-
-        min-height: 35vh;
-        z-index: 1;
-        margin-left: 2em;
-        margin-right: 2em;
+        grid-row-end: second-rw;
         margin-bottom: 2vh;
+        margin-left: 2vw;
+        margin-right: 2vw;
     }
 
-    .quote-chart-buttons-container {
+    .quote-chart-buttons-container {F
         display: inline;
-        margin-top: 0vh;
+        margin-top: 2vh;
+        margin-bottom: 2vh;
         z-index: 10;
         /*display:inline-block;*/
     }
@@ -325,7 +319,7 @@
         grid-column-start: fifth-col;
         grid-column-end: end;
         grid-row-start: first-rw;
-        grid-row-end: third-rw;
+        grid-row-end: second-rw;
         margin-bottom: 0vh;
 
         padding-left: 4rem;

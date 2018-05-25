@@ -16,16 +16,20 @@ class Chart extends Component {
     let gainedOrLost =
       this.props.chartDataPrices[this.props.chartDataPrices.length - 1] -
       this.props.chartDataPrices[0];
-    
-    let date = (this.props.currentChartButton === '1D' ? 'DoD' : 'since ' + this.props.chartDataDates[0])
 
-    let chartTitle = `${this.props.name} stock ${gainedOrLost > 0 ? 'gained' : 'lost'} ${Math.abs((
+    let date =
+      this.props.currentChartButton === "1D"
+        ? "DoD"
+        : "since " + this.props.chartDataDates[0];
+
+    let chartTitle = `${this.props.name} stock ${
+      gainedOrLost > 0 ? "gained" : "lost"
+    } ${Math.abs(
       (this.props.chartDataPrices[this.props.chartDataPrices.length - 1] -
         this.props.chartDataPrices[0]) *
-      100 /
-      this.props.chartDataPrices[0]
-    )).toFixed(2)}% ${date}*`;
-    
+        100 /
+        this.props.chartDataPrices[0]
+    ).toFixed(2)}% ${date}*`;
 
     const options = {
       title: {
@@ -120,6 +124,7 @@ class Chart extends Component {
                 options={options}
               />
             </div>
+
             <div className="quote-chart-buttons-container">
               <Button
                 className={
@@ -182,7 +187,7 @@ class Chart extends Component {
                 1D
               </Button>
             </div>
-            </React.Fragment>
+          </React.Fragment>
         )}
       </MyContext.Consumer>
     );
