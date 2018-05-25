@@ -167,6 +167,7 @@
     }
 
     .quote-chart-container {
+        display: block;
         min-height: 35vh;
         z-index: 1;
         margin-left: 2em;
@@ -175,6 +176,7 @@
     }
 
     .quote-chart-buttons-container {
+        display: inline;
         margin-top: 0vh;
         z-index: 10;
         /*display:inline-block;*/
@@ -221,6 +223,7 @@
     }
 
     .quote-performance {
+        display: inline;
         grid-column-start: second-col;
         grid-column-end: fifth-col;
         grid-row-start: third-rw;
