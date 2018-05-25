@@ -15,7 +15,7 @@ html {
   --main-font: "";
   --color1: #222;
   --color2: #eeeeee;
-  --color3: #F39F41;
+  --color3: #f39f41;
 }
 
 /* inherit border-box on all elements in the universe and before and after */
@@ -32,8 +32,8 @@ body {
 .App {
   text-align: center;
   min-height: 100%;
-  
-  padding-bottom: 100p
+
+  padding-bottom: 100p;
 }
 
 .header {
@@ -46,7 +46,6 @@ body {
   margin-bottom: 0rem;
   margin-top: 0;
   /*height: 20vh;*/
-  top: 0;
 
   display: grid;
   justify-content: center;
@@ -70,7 +69,7 @@ body {
 
 .App-title:hover {
   color: var(--color3);
-  transition: .5s ease-in;
+  transition: 0.5s ease-in;
 }
 
 .App-intro {
@@ -104,6 +103,7 @@ ul {
   grid-column-end: end;
   grid-row-start: second-rw;
   grid-row-end: end;
+  font-weight: bold;
 }
 
 .submit-button {
@@ -116,7 +116,7 @@ ul {
   /*padding: 1em;*/
   z-index: 2;
   font-size: 1.75em;
-  /*font-weight: bold;*/
+  font-weight: bold;
   /*margin-top: 1rem;*/
 }
 
@@ -145,7 +145,6 @@ ul {
   border-width: 0;
   background: #222;
   border-radius: 0;
-
 }
 
 .quote-info {
@@ -154,7 +153,7 @@ ul {
   grid-row-start: first-rw;
   grid-row-end: second-rw;
   text-align: center;
-/*  border-color: #5F5F5F;
+  /*  border-color: #5F5F5F;
   border-width: 1px;
   border-style: dotted;*/
   justify-content: center;
@@ -179,7 +178,6 @@ ul {
   margin-top: 0rem;
   margin-bottom: 0.5rem;
 
-
   color: var(--color2);
 }
 
@@ -201,8 +199,8 @@ ul {
   display: none;
   min-height: 35vh;
   z-index: 1;
-  margin-left: 2em; 
-  margin-right: 2em; 
+  margin-left: 2em;
+  margin-right: 2em;
 }
 
 .quote-chart-buttons-container {
@@ -233,7 +231,6 @@ ul {
   margin-bottom: 1rem;
   font-weight: bold;
   font-size: 2.5em;
-
 }
 
 .quote-summary {
@@ -247,7 +244,7 @@ ul {
   padding-top: 2rem;
   padding-bottom: 0rem;
 
-  font-size: .85em;
+  font-size: 0.85em;
   text-align: center;
   /*background: red;*/
 }
@@ -267,7 +264,7 @@ ul {
   color: var(--color2);
   text-align: center;
   align-items: center;
-/*  background: grey;*/
+  /*  background: grey;*/
 }
 
 .quote-performance-table {
@@ -288,8 +285,8 @@ ul {
 
 .quote-performance-table-footer {
   margin-top: 2rem;
-  opacity: .9;
-  font-size: .85em;
+  opacity: 0.9;
+  font-size: 0.85em;
 }
 
 .quote-stats {
@@ -308,8 +305,6 @@ ul {
   /*background: blue;*/
 }
 
-
-
 .quote-mrkcap {
   margin-top: 0rem;
   margin-bottom: 0rem;
@@ -326,7 +321,7 @@ ul {
   margin-top: 0rem;
   margin-bottom: 1vh;
   color: var(--color2);
-  opacity: .8;
+  opacity: 0.8;
 }
 
 .quote-sector {
@@ -358,7 +353,7 @@ ul {
   padding-top: 0rem;
   padding-bottom: 0rem;
 
-  font-size: .85em;
+  font-size: 0.85em;
 }
 
 .quote-news-list {
@@ -368,13 +363,13 @@ ul {
 .quote-news-title {
   color: var(--color2);
   margin-bottom: 1vh;
-  transition: .25s ease-in;
+  transition: 0.25s ease-in;
 }
 
 .quote-news-title:hover {
-  transition: .25s ease-in;
+  transition: 0.25s ease-in;
   transform: translateX(-5%);
-  color: #F39F41;
+  color: #f39f41;
 }
 
 .quote-subtitle {
@@ -401,7 +396,7 @@ ul {
   margin-top: 2vh;
   text-align: center;
   z-index: 1;
-  
+
   display: grid;
   justify-content: center;
   align-items: center;
@@ -420,48 +415,51 @@ ul {
 }
 
 a:link {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 a:visited {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 a:hover {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .btn-default {
   border-width: 0;
-  }
+}
 
 .btn-default:hover {
-    color: var(--color1);
-    background: var(--color2);;
-  }
+  color: var(--color1);
+  background: var(--color2);
+}
 
-  .btn-default:focus {
-    outline: none;
-    }
+.btn-default:focus {
+  outline: none;
+}
 
 .btn-success {
-    border-width: 0;
-    color: var(--color2);
-    background: var(--color1);
-    border-width: 1px;
-    border-color: var(--color2);
-    }
+  border-width: 0;
+  color: var(--color3);
+  background: var(--color1);
+  border-width: 5px;
+  border-color: var(--color3);
+}
 
 .btn-success:hover {
-      color: var(--color1);
-      background: green;
-  }
+  color: var(--color1);
+  background: var(--color3);
+  outline: none;
+  border-color: var(--color3);
+}
 
-  .btn-success:focus {
-        color: var(--color2);
-        background: green;
-        outline: none;
-    }
+.btn-success:focus {
+  color: var(--color3);
+  background: var(--color1);
+  border-color: var(--color3);
+  outline: none;
+}
 
 input {
   border-width: 0;
@@ -470,7 +468,7 @@ input {
 }
 
 th {
-    text-align: center;
+  text-align: center;
 }
 
 .corner {

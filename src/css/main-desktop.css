@@ -8,28 +8,7 @@
     .App {
         text-align: center;
         min-height: 100%;
-
         padding-bottom: 100p;
-    }
-
-    .App-title {
-        color: var(--color3);
-        text-align: left;
-        margin-bottom: 0;
-        margin-top: 0;
-        font-weight: bold;
-        font-size: 4.5rem;
-        letter-spacing: -2px;
-        grid-column-start: first-col;
-        grid-column-end: second-col;
-        grid-row-start: first-rw;
-        grid-row-end: end;
-        cursor: pointer;
-    }
-
-    .App-title:hover {
-        color: var(--color3);
-        transition: 0.5s ease-in;
     }
 
     .App-intro {
@@ -55,18 +34,40 @@
         display: grid;
         justify-content: center;
         align-items: center;
-        grid-template-columns: [first-col] 1fr [second-col] 1fr [third-col] 1fr [end];
+        grid-template-columns: [first-col] 33% [second-col] 33% [third-col] 33% [end];
         grid-template-rows: 1fr [end];
+    }
+
+    .App-title {
+        color: var(--color3);
+        text-align: left;
+        margin-bottom: 0;
+        margin-top: 0;
+        font-weight: bold;
+        font-size: 4.5rem;
+        letter-spacing: -2px;
+        grid-column-start: first-col;
+        grid-column-end: second-col;
+        grid-row-start: first-rw;
+        grid-row-end: end;
+        cursor: pointer;
+    }
+
+    .App-title:hover {
+        color: var(--color3);
+        transition: 0.5s ease-in;
     }
 
     .search {
         margin: 0;
         text-align: center;
         height: 5vh;
-        width: 40vw;
+        width: 30vw;
         z-index: 2;
         font-size: 2em;
         padding: 0;
+        margin-left: auto;
+        margin-right: auto;
 
         grid-column-start: second-col;
         grid-column-end: third-col;
@@ -75,7 +76,7 @@
     }
 
     .submit-button {
-        margin-left: 2rem;
+        margin-left: 6vw;
         margin-bottom: 0rem;
         text-align: center;
         width: 15vw;
@@ -83,6 +84,7 @@
         z-index: 2;
         font-size: 1.75em;
         padding: 0;
+        font-weight: bold;
 
         grid-column-start: third-col;
         grid-column-end: end;
@@ -425,16 +427,16 @@
     }
 
     .btn-success:hover {
-        color: var(--color2);
-        background: green;
+        color: var(--color1);
+        background: var(--color3);
         outline: none;
         border-color: var(--color3);
     }
 
     .btn-success:focus {
-        color: var(--color2);
+        color: var(--color3);
         background: var(--color1);
-        border-color: var(--color2);
+        border-color: var(--color3);
         outline: none;
     }
 

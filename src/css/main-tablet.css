@@ -70,6 +70,7 @@
         padding: 0;
         margin-left: 2vw;
         margin-right: auto;
+        font-weight: bold;
 
         grid-column-start: first-col;
         grid-column-end: second-col;
@@ -88,6 +89,7 @@
         padding: 0;
         margin-left: auto;
         margin-right: auto;
+        font-weight: bold;
 
         grid-column-start: second-col;
         grid-column-end: end;
@@ -110,7 +112,7 @@
     .quote-container {
         display: grid;
         grid-template-columns: [first-col] 1fr [second-col] 1fr [third-col] 1fr [fourth-col] 1fr [end];
-        grid-template-rows: [first-rw] 1fr [second-rw] 1fr [third-rw] 1fr [fourth-rw] 1fr [end];
+        grid-template-rows: [first-rw] 1fr [second-rw] 1fr [end];
         max-height: auto;
         margin-bottom: 0;
         margin-top: 0;
@@ -134,6 +136,7 @@
       border-style: dotted;*/
         justify-content: center;
         align-items: center;
+        margin-bottom: 4vh;
 
         padding-left: 4rem;
         padding-right: 2rem;
@@ -176,7 +179,7 @@
         z-index: 1;
         margin-left: 2em;
         margin-right: 2em;
-        margin-bottom: 1vh;
+        margin-bottom: 2vh;
     }
 
     .quote-chart-buttons-container {
@@ -213,8 +216,8 @@
     .quote-summary {
       grid-column-start: first-col;
       grid-column-end: second-col;
-      grid-row-start: third-rw;
-      grid-row-end: fourth-rw;
+      grid-row-start: second-rw;
+      grid-row-end: end;
 
         padding-right: 2rem;
         padding-left: 4rem;
@@ -230,7 +233,7 @@
         display: inline;
         grid-column-start: second-col;
         grid-column-end: fifth-col;
-        grid-row-start: third-rw;
+        grid-row-start: second-rw;
         grid-row-end: end;
 
         padding-right: 2rem;
@@ -403,16 +406,16 @@
     }
 
     .btn-success:hover {
-        color: var(--color2);
-        background: green;
+        color: var(--color1);
+        background: var(--color3);
         outline: none;
         border-color: var(--color3);
     }
 
     .btn-success:focus {
-        color: var(--color2);
+        color: var(--color3);
         background: var(--color1);
-        border-color: var(--color2);
+        border-color: var(--color3);
         outline: none;
     }
 
