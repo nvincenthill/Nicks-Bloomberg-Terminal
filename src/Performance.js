@@ -29,7 +29,7 @@ class Performance extends React.Component {
                 <td
                   className={"quote-performance-list-item"}
                 >
-                  {context.state.currentQuote.symbol}
+                  {context.state.currentQuote.symbol + '*'} 
                 </td>
                   <td
                     className={
@@ -96,7 +96,7 @@ class Performance extends React.Component {
                 <td
                   className={"quote-performance-list-item"}
                 >
-                  S&P500
+                  S&P500*
                 </td>
                   <td
                     className={

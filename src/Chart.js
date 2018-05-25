@@ -19,19 +19,19 @@ class Chart extends Component {
     
     let date = (this.props.currentChartButton === '1D' ? 'DoD' : 'since ' + this.props.chartDataDates[0])
 
-    let chartTitle = `${this.props.name} stock ${gainedOrLost > 0 ? 'gained' : 'lost'} ${(
+    let chartTitle = `${this.props.name} stock ${gainedOrLost > 0 ? 'gained' : 'lost'} ${Math.abs((
       (this.props.chartDataPrices[this.props.chartDataPrices.length - 1] -
         this.props.chartDataPrices[0]) *
       100 /
       this.props.chartDataPrices[0]
-    ).toFixed(2)}% ${date}`;
+    )).toFixed(2)}% ${date}*`;
     
 
     const options = {
       title: {
         display: true,
         text: chartTitle,
-        fontColor: "#F39F41",
+        fontColor: "#eee",
         fontSize: 20
       },
       legend: {
