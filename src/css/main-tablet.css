@@ -1,6 +1,432 @@
 @media only screen and (min-width: 600px) {
     /* For tablets: */
+    
     body {
-      background: yellow;
+        background: var(--color2);
+    }
+
+    .App {
+        text-align: center;
+        min-height: 100%;
+
+        padding-bottom: 100p;
+    }
+
+    .App-title {
+        color: var(--color3);
+        text-align: left;
+        margin-bottom: 2vh;
+        margin-left: 2vw;
+        margin-top: 0;
+        font-weight: bold;
+        font-size: 4.5rem;
+        letter-spacing: -2px;
+        grid-column-start: first-col;
+        grid-column-end: end;
+        grid-row-start: first-rw;
+        grid-row-end: second-rw;
+        cursor: pointer;
+    }
+
+    .App-title:hover {
+        color: var(--color3);
+        transition: 0.5s ease-in;
+    }
+
+    .App-intro {
+        font-size: large;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    .header {
+        background-color: #222;
+        padding-right: 2rem;
+        padding-left: 2rem;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+        color: var(--color2);
+        margin-bottom: 0rem;
+        margin-top: 0;
+        height: auto;
+
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        grid-template-columns: [first-col] 1fr [second-col] 1fr [end];
+        grid-template-rows: [first-rw] 1fr [second-rw] 1fr [end];
+    }
+
+    .search {
+        margin: 0;
+        text-align: center;
+        height: 5vh;
+        width: 50vw;
+        z-index: 2;
+        font-size: 2em;
+        padding: 0;
+        margin-left: 2vw;
+        margin-right: auto;
+
+        grid-column-start: first-col;
+        grid-column-end: second-col;
+        grid-row-start: second-rw;
+        grid-row-end: third-rw;
+    }
+
+    .submit-button {
+        margin-left: 2rem;
+        margin-bottom: 0rem;
+        text-align: center;
+        width: 15vw;
+        height: 5vh;
+        z-index: 2;
+        font-size: 1.75em;
+        padding: 0;
+        margin-left: auto;
+        margin-right: auto;
+
+        grid-column-start: second-col;
+        grid-column-end: end;
+        grid-row-start: second-rw;
+        grid-row-end: end;
+    }
+
+    .red {
+        border-color: red;
+    }
+
+    .red-text {
+        color: red;
+    }
+
+    .green-text {
+        color: green;
+    }
+
+    .quote-container {
+        display: grid;
+        grid-template-columns: [first-col] 1fr [second-col] 1fr [third-col] 1fr [fourth-col] 1fr [end];
+        grid-template-rows: [first-rw] 1fr [second-rw] 1fr [third-rw] 1fr [fourth-rw] 1fr [end];
+        max-height: auto;
+        margin-bottom: 0;
+        margin-top: 0;
+        padding-left: 0rem;
+        padding-right: 0rem;
+        padding-top: 0rem;
+        padding-bottom: 0rem;
+        border-width: 0;
+        background: #222;
+        border-radius: 0;
+    }
+
+    .quote-info {
+        grid-column-start: first-col;
+        grid-column-end: second-col;
+        grid-row-start: first-rw;
+        grid-row-end: second-rw;
+        text-align: left;
+        /*  border-color: #5F5F5F;
+      border-width: 1px;
+      border-style: dotted;*/
+        justify-content: center;
+        align-items: center;
+
+        padding-left: 4rem;
+        padding-right: 2rem;
+        padding-top: 0rem;
+        padding-bottom: 0rem;
+    }
+
+    .quote-ticker {
+        font-weight: bold;
+        font-size: 5em;
+        margin-top: 0rem;
+        margin-bottom: 0rem;
+
+        color: var(--color2);
+    }
+
+    .quote-name {
+        margin-top: 0rem;
+        margin-bottom: 0.5rem;
+
+        color: var(--color2);
+    }
+
+    .quote-chart {
+        background-color: var(--color1);
+        padding-left: 0rem;
+        padding-right: 0rem;
+        padding-top: 2rem;
+        padding-bottom: 0rem;
+    }
+
+    .quote-chart-container {
+        display: block;
+        grid-column-start: second-col;
+        grid-column-end: end;
+        grid-row-start: first-rw;
+        grid-row-end: third-rw;
+
+        min-height: 35vh;
+        z-index: 1;
+        margin-left: 2em;
+        margin-right: 2em;
+        margin-bottom: 1vh;
+    }
+
+    .quote-chart-buttons-container {
+        display: inline;
+        margin-top: 0vh;
+        z-index: 10;
+        /*display:inline-block;*/
+    }
+
+    .quote-chart-button {
+        background: var(--color1);
+        color: var(--color2);
+    }
+
+    .quote-chart-button-active {
+        background: var(--color2);
+        color: var(--color1);
+    }
+
+    .quote-price {
+        margin-top: 0rem;
+        margin-bottom: 0rem;
+        font-size: 3em;
+        color: var(--color2);
+    }
+
+    .quote-dodchg {
+        margin-top: 0rem;
+        margin-bottom: 1rem;
+        font-weight: bold;
+        font-size: 2.5em;
+    }
+
+    .quote-summary {
+      grid-column-start: first-col;
+      grid-column-end: second-col;
+      grid-row-start: third-rw;
+      grid-row-end: fourth-rw;
+
+        padding-right: 2rem;
+        padding-left: 4rem;
+        padding-top: 0rem;
+        padding-bottom: 0rem;
+
+        font-size: 0.85em;
+        text-align: left;
+        /*background: red;*/
+    }
+
+    .quote-performance {
+        display: inline;
+        grid-column-start: second-col;
+        grid-column-end: fifth-col;
+        grid-row-start: third-rw;
+        grid-row-end: end;
+
+        padding-right: 2rem;
+        padding-left: 2rem;
+        padding-top: 0rem;
+        padding-bottom: 2rem;
+
+        color: var(--color2);
+        text-align: center;
+        align-items: center;
+        /*  background: grey;*/
+    }
+
+    .quote-performance-table {
+        margin-top: 2rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .quote-performance-list-item {
+        font-size: 1em;
+        width: 10vw;
+    }
+
+    .quote-performance-list-header {
+        font-size: 1em;
+        padding-bottom: 1rem;
+    }
+
+    .quote-performance-table-footer {
+        margin-top: 2rem;
+        opacity: 0.9;
+        font-size: 0.85em;
+    }
+
+    .quote-stats {
+        display: none;
+    }
+
+    .quote-mrkcap {
+        margin-top: 0rem;
+        margin-bottom: 0rem;
+        font-size: 1.25em;
+        color: var(--color2);
+    }
+
+    .quote-peratio {
+        margin-top: 0rem;
+        margin-bottom: 0rem;
+        color: var(--color2);
+    }
+
+    .quote-latest {
+        margin-top: 0rem;
+        margin-bottom: 1vh;
+        color: var(--color2);
+        opacity: 0.8;
+    }
+
+    .quote-sector {
+        margin-top: 0rem;
+        margin-bottom: 1vh;
+        color: var(--color2);
+    }
+
+    .quote-exchange {
+        margin-top: 0rem;
+        margin-bottom: 0vh;
+        color: var(--color2);
+    }
+
+    .quote-description {
+        margin-top: 0rem;
+        margin-bottom: 1rem;
+        color: var(--color2);
+    }
+
+    .quote-news {
+        display: none;
+    }
+
+    .quote-news-list {
+        text-align: right;
+    }
+
+    .quote-news-title {
+        color: var(--color2);
+        margin-bottom: 1vh;
+        transition: 0.25s ease-in;
+    }
+
+    .quote-news-title:hover {
+        transition: 0.25s ease-in;
+        transform: translateX(-5%);
+        color: #f39f41;
+    }
+
+    .quote-subtitle {
+        border-top: 5px solid var(--color3);
+        color: var(--color3);
+        font-weight: bold;
+        margin-bottom: 1vh;
+        margin-top: 0rem;
+        padding-top: 1vh;
+    }
+
+    .quote-update {
+        grid-column-start: first-col;
+        grid-column-end: end;
+        grid-row-start: fourth-rw;
+        grid-row-end: end;
+
+        background: var(--color2);
+    }
+
+    .footer {
+        width: 100%;
+        height: 5vh;
+        text-align: center;
+        z-index: 1;
+        margin-top: 1vh;
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        grid-template-columns: [first-col] 2fr [second-col] 1fr [third-col] 3fr [fourth-col] 1fr [fifth-col] 2fr [end];
+        grid-template-rows: [first-rw] 100% [end];
+    }
+
+    #footer-name {
+        grid-column-start: first-col;
+        grid-column-end: end;
+        grid-row-start: first-rw;
+        grid-row-end: end;
+
+        align-items: center;
+        margin-bottom: 0;
+    }
+
+    a:link {
+        text-decoration: none;
+    }
+
+    a:visited {
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: none;
+    }
+
+    .btn-default {
+        border-width: 0;
+    }
+
+    .btn-default:hover {
+        color: var(--color1);
+        background: var(--color2);
+    }
+
+    .btn-default:focus {
+        outline: none;
+    }
+
+    .btn-success {
+        border-width: 0;
+        color: var(--color3);
+        background: var(--color1);
+        border-width: 5px;
+        border-color: var(--color3);
+    }
+
+    .btn-success:hover {
+        color: var(--color2);
+        background: green;
+        outline: none;
+        border-color: var(--color3);
+    }
+
+    .btn-success:focus {
+        color: var(--color2);
+        background: var(--color1);
+        border-color: var(--color2);
+        outline: none;
+    }
+
+    input {
+        border-width: 0;
+        background: var(--color2);
+        color: var(--color1);
+    }
+
+    th {
+        text-align: center;
+    }
+
+    .corner {
+        display: inline;
     }
 }

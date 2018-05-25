@@ -1,4 +1,4 @@
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 769px) {
     /* For desktop: */
 
     body {
@@ -105,7 +105,7 @@
     .quote-container {
         display: grid;
         grid-template-columns: [first-col] 2fr [second-col] 1fr [third-col] 3fr [fourth-col] 1fr [fifth-col] 2fr [end];
-        grid-template-rows: [first-rw] 1fr [second-rw] 0.25fr [third-rw] 1fr [fourth-rw] 1fr [end];
+        grid-template-rows: [first-rw] 1fr [second-rw] 1fr [end];
         max-height: 80vh;
         margin-bottom: 0;
         margin-top: 0;
@@ -129,6 +129,7 @@
       border-style: dotted;*/
         justify-content: center;
         align-items: center;
+        margin-bottom: 2vh;
 
         padding-left: 4rem;
         padding-right: 2rem;
@@ -154,12 +155,6 @@
 
     .quote-chart {
         background-color: var(--color1);
-
-        grid-column-start: second-col;
-        grid-column-end: fifth-col;
-        grid-row-start: first-rw;
-        grid-row-end: third-rw;
-
         padding-left: 0rem;
         padding-right: 0rem;
         padding-top: 2rem;
@@ -168,11 +163,16 @@
 
     .quote-chart-container {
         display: block;
+        grid-column-start: second-col;
+        grid-column-end: fifth-col;
+        grid-row-start: first-rw;
+        grid-row-end: third-rw;
+
         min-height: 35vh;
         z-index: 1;
         margin-left: 2em;
         margin-right: 2em;
-        margin-bottom: 1vh;
+        margin-bottom: 2vh;
     }
 
     .quote-chart-buttons-container {
@@ -209,7 +209,7 @@
     .quote-summary {
         grid-column-start: first-col;
         grid-column-end: second-col;
-        grid-row-start: third-rw;
+        grid-row-start: second-rw;
         grid-row-end: end;
 
         padding-right: 2rem;
@@ -226,7 +226,7 @@
         display: inline;
         grid-column-start: second-col;
         grid-column-end: fifth-col;
-        grid-row-start: third-rw;
+        grid-row-start: second-rw;
         grid-row-end: end;
 
         padding-right: 2rem;
@@ -263,9 +263,10 @@
     }
 
     .quote-stats {
+        display: inline;
         grid-column-start: fifth-col;
         grid-column-end: end;
-        grid-row-start: third-rw;
+        grid-row-start: second-rw;
         grid-row-end: end;
 
         padding-right: 4rem;
@@ -317,11 +318,13 @@
     }
 
     .quote-news {
+        display: inline;
         text-align: right;
         grid-column-start: fifth-col;
         grid-column-end: end;
         grid-row-start: first-rw;
         grid-row-end: third-rw;
+        margin-bottom: 2vh;
 
         padding-left: 4rem;
         padding-right: 4rem;
