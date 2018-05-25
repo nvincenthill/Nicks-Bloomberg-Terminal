@@ -10,7 +10,7 @@ class Info extends React.Component {
     return (
       <MyContext.Consumer>
         {context => (
-          <div>
+          <React.Fragment>
             {context.state.currentCompany ? (
               <div className="quote-info">
                 <a href={context.state.currentCompany.website}>
@@ -71,7 +71,7 @@ class Info extends React.Component {
                 </p> */}
               </div>
             ) : null}
-          </div>
+          </React.Fragment>
         )}
       </MyContext.Consumer>
     );

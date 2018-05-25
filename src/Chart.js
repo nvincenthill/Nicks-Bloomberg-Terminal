@@ -112,7 +112,7 @@ class Chart extends Component {
     return (
       <MyContext.Consumer>
         {context => (
-          <div>
+          <React.Fragment>
             <div className="quote-chart-container">
               <Line
                 redraw={context.state.chartShouldRedraw}
@@ -182,7 +182,7 @@ class Chart extends Component {
                 1D
               </Button>
             </div>
-          </div>
+            </React.Fragment>
         )}
       </MyContext.Consumer>
     );
