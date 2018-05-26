@@ -386,7 +386,7 @@ class App extends Component {
                   octoColor="#222"
                   bannerColor="#eeeeee"
                   className="corner"
-                  size="100"
+                  size="90"
                 />
                 <Header />
                 <DataWell />

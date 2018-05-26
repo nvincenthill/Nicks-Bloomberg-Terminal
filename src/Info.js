@@ -23,20 +23,26 @@ class Info extends React.Component {
                 </h2>
 
                 <div>
-                <h3 className="quote-price">
-                  ${context.state.currentQuote.iexRealtimePrice
-                    ? context.state.currentQuote.iexRealtimePrice.toFixed(2)
-                    : context.state.currentQuote.latestPrice.toFixed(2)}
-                </h3>
-                <h4
-                  className={
-                    context.state.currentQuote.changePercent >= 0
-                      ? "quote-dodchg green-text"
-                      : "quote-dodchg red-text"
-                  }
-                >
-                  {(context.state.currentQuote.changePercent * 100).toFixed(2)}%
-                </h4>
+                  <h3 className="quote-price">
+                    ${context.state.currentQuote.iexRealtimePrice
+                      ? context.state.currentQuote.iexRealtimePrice.toFixed(2)
+                      : context.state.currentQuote.latestPrice.toFixed(2)}
+                  </h3>
+                  <h4
+                    className={
+                      context.state.currentQuote.changePercent >= 0
+                        ? "quote-dodchg green-text"
+                        : "quote-dodchg red-text"
+                    }
+                  >
+                    {context.state.currentQuote.changePercent >= 0
+                      ? "+"
+                      : ""}
+                    {context.state.currentQuote.change.toFixed(2)}{" "}
+                    {(context.state.currentQuote.changePercent * 100).toFixed(
+                      2
+                    )}%
+                  </h4>
                 </div>
                 <p className="quote-latest">
                   As of the {context.state.currentQuote.latestTime}{" "}
@@ -53,9 +59,12 @@ class Info extends React.Component {
                     : null}
                 </p>
                 <p className="quote-mrkcap">
-                  Market Capitalization: <b>${(
-                    context.state.currentQuote.marketCap / 1000000000
-                  ).toFixed(2)}B</b>
+                  Market Capitalization:{" "}
+                  <b>
+                    ${(
+                      context.state.currentQuote.marketCap / 1000000000
+                    ).toFixed(2)}B
+                  </b>
                 </p>
 
                 {/* <p className="quote-mrkcap">
