@@ -108,7 +108,7 @@
         display: grid;
         grid-template-columns: [first-col] 2fr [second-col] 1fr [third-col] 3fr [fourth-col] 1fr [fifth-col] 2fr [end];
         grid-template-rows: [first-rw] 1fr [second-rw] 1fr [end];
-        max-height: 80vh;
+        max-height: auto;
         margin-bottom: 0;
         margin-top: 0;
         padding-left: 0rem;
