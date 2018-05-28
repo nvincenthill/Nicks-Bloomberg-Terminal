@@ -61,7 +61,30 @@ class Chart extends Component {
         ],
         yAxes: [
           {
+            id: "stock",
             display: true,
+            gridLines: {
+              color: "#F39F41"
+            },
+            scaleLabel: {
+              // fontColor: "white",
+              // display: true,
+              // fontSize: 20,
+              // labelString: "Price (USD)"
+            },
+            ticks: {
+              fontColor: "white",
+              fontSize: 10,
+              padding: 5,
+              callback: function(value) {
+                return "$" + value;
+              }
+            }
+          },
+          {
+            id: "test",
+            display: false,
+            position: 'left',
             gridLines: {
               color: "#F39F41"
             },
@@ -89,6 +112,7 @@ class Chart extends Component {
       labels: this.props.chartDataDates,
       datasets: [
         {
+          yAxisID: 'stock',
           label: this.props.name,
           fill: "origin",
           lineTension: 0.1,
@@ -111,6 +135,30 @@ class Chart extends Component {
           backgroundColor: "rgba(0, 128, 0, .5)",
           hoverBackgroundColor: "rgba(0, 128, 0, 1)"
         }
+        // {
+        //   yAxisID: 'test',
+        //   label: "SPY",
+        //   fill: "origin",
+        //   lineTension: 0.1,
+        //   borderColor: "#eeeeee",
+        //   borderCapStyle: "butt",
+        //   borderDash: [],
+        //   borderDashOffset: 0.0,
+        //   borderJoinStyle: "miter",
+        //   pointBorderColor: "#eeeeee",
+        //   pointBackgroundColor: "#fff",
+        //   pointBorderWidth: 1,
+        //   pointHoverRadius: 5,
+        //   pointHoverBackgroundColor: "#eeeeee",
+        //   pointHoverBorderColor: "#eeeeee",
+        //   pointHoverBorderWidth: 2,
+        //   pointRadius: 1,
+        //   pointHitRadius: 10,
+        //   color: "rgba(0, 128, 0, .5)",
+        //   data: this.props.chartDataSPYPrices,
+        //   backgroundColor: "red",
+        //   hoverBackgroundColor: "rgba(0, 128, 0, 1)"
+        // }
       ]
     };
     return (

@@ -27,6 +27,7 @@ class DataWell extends React.Component {
               <div className="quote-chart">
                 <Chart
                   chartDataPrices={context.state.chartDataPrices}
+                  chartDataSPYPrices={context.state.SPYPrices}
                   chartDataDates={context.state.chartDataDates}
                   symbol={context.state.currentQuote.symbol}
                   name={context.state.currentQuote.companyName}

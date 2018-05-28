@@ -44,7 +44,8 @@ class MyProvider extends Component {
       currentCEOTitle: "",
       currentChartButton: "5Y",
       SPYData: {},
-      chartShouldRedraw: false
+      chartShouldRedraw: false,
+      SPYPrices: []
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -146,7 +147,7 @@ class MyProvider extends Component {
         }
       })
       .then(responseJson => {
-        this.setState({ SPYData: responseJson });
+        this.addSPYData(responseJson);
       })
       .catch(error => {
         console.log(error);
@@ -173,6 +174,18 @@ class MyProvider extends Component {
     }
 
     this.setState({ OneDayPrices: OneDayPrices, OneDayDates: OneDayDates });
+  };
+
+  // add SPY data to state
+  addSPYData = data => {
+    this.setState({ SPYData: data })
+    let prices = [];
+
+    for (let i = 0; i < data.chart.length; i++) {
+      prices.push(data.chart[i].close);
+    }
+
+    this.setState({ SPYPrices: prices });
   };
 
   // add data to state
