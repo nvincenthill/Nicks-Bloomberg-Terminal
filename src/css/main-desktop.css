@@ -15,6 +15,14 @@
         font-size: large;
     }
 
+    .wallpaper {
+      width:100%;
+      height:100%;
+      /*max-height: 80vh;*/
+      object-fit: cover;
+      overflow: hidden;
+    }
+    
     body {
         margin: 0;
         padding: 0;
@@ -108,7 +116,7 @@
     .quote-container {
         display: grid;
         grid-template-columns: [first-col] 2fr [second-col] 1fr [third-col] 3fr [fourth-col] 1fr [fifth-col] 2fr [end];
-        grid-template-rows: [first-rw] 1fr [second-rw] 1fr [end];
+        grid-template-rows: [first-rw] 1fr [second-rw] auto [end];
         max-height: auto;
         margin-bottom: 0;
         margin-top: 0;
@@ -158,10 +166,7 @@
 
     .quote-chart {
         background-color: var(--color1);
-        padding-left: 0rem;
-        padding-right: 0rem;
-        padding-top: 0rem;
-        padding-bottom: 0rem;
+        padding: 0;
         grid-column-start: second-col;
         grid-column-end: fifth-col;
         grid-row-start: first-rw;
@@ -190,14 +195,14 @@
     }
 
     .quote-price {
-        margin-top: 0rem;
-        margin-bottom: 0rem;
+        margin-top: 0;
+        margin-bottom: 0;
         font-size: 3em;
         color: var(--color2);
     }
 
     .quote-dodchg {
-        margin-top: 0rem;
+        margin-top: 0;
         margin-bottom: 1rem;
         font-weight: bold;
         font-size: 2.5em;
@@ -208,11 +213,11 @@
         grid-column-end: second-col;
         grid-row-start: second-rw;
         grid-row-end: end;
-
         padding-right: 2rem;
         padding-left: 4rem;
-        padding-top: 0rem;
-        padding-bottom: 0rem;
+        padding-top: 0;
+        padding-bottom: 0;
+        margin-bottom: 2rem;
 
         font-size: 0.85em;
         text-align: left;
@@ -220,27 +225,26 @@
     }
 
     .quote-performance {
+        color: var(--color2);
         display: inline;
         grid-column-start: second-col;
         grid-column-end: fifth-col;
         grid-row-start: second-rw;
         grid-row-end: end;
-
         padding-right: 2rem;
         padding-left: 2rem;
-        padding-top: 0rem;
+        padding-top: 0;
         padding-bottom: 2rem;
-
-        color: var(--color2);
+        margin-bottom: 2rem;
         text-align: center;
         align-items: center;
         /*  background: grey;*/
     }
 
     .quote-performance-table {
-        margin-top: 2rem;
         margin-left: auto;
         margin-right: auto;
+        margin-top: 2rem;
     }
 
     .quote-performance-list-item {
@@ -265,12 +269,11 @@
         grid-column-end: end;
         grid-row-start: second-rw;
         grid-row-end: end;
-
         padding-right: 4rem;
         padding-left: 2rem;
         padding-top: 0rem;
         padding-bottom: 0rem;
-
+        margin-bottom: 2rem;
         text-align: right;
         font-size: 1.25em;
         /*background: blue;*/
@@ -370,7 +373,7 @@
         height: 5vh;
         text-align: center;
         z-index: 1;
-        margin-top: 1vh;
+        margin-top: 0;
         display: grid;
         justify-content: center;
         align-items: center;

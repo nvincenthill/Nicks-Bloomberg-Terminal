@@ -1,10 +1,6 @@
 /* For mobile phones: */
 
 /* Variable declaration */
-
-:root {
-}
-
 /* Border box declaration */
 
 html {
@@ -32,21 +28,22 @@ body {
 .App {
   text-align: center;
   min-height: 100%;
+}
 
-  padding-bottom: 100p;
+.wallpaper {
+  width:100%;
+  height:100%;
+  /*max-height: 80vh;*/
+  object-fit: cover;
+  overflow: hidden;
 }
 
 .header {
   background-color: #222;
-  padding-right: 2rem;
-  padding-left: 2rem;
-  padding-top: 0rem;
-  padding-bottom: 0rem;
   color: var(--color2);
-  margin-bottom: 0rem;
+  margin-bottom: 0;
   margin-top: 0;
-  /*height: 20vh;*/
-
+  padding: 2rem 0;
   display: grid;
   justify-content: center;
   align-items: center;
@@ -382,12 +379,11 @@ ul {
 }
 
 .quote-update {
-  grid-column-start: first-col;
-  grid-column-end: end;
-  grid-row-start: fourth-rw;
-  grid-row-end: end;
-
   background: var(--color2);
+  grid-column-end: end;
+  grid-column-start: first-col;
+  grid-row-end: end;
+  grid-row-start: fourth-rw;
 }
 
 .footer {
@@ -455,15 +451,15 @@ a:hover {
 }
 
 .btn-success:focus {
-  color: var(--color3);
   background: var(--color1);
   border-color: var(--color3);
+  color: var(--color3);
   outline: none;
 }
 
 input {
-  border-width: 0;
   background: var(--color2);
+  border-width: 0;
   color: var(--color1);
 }
 

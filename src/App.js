@@ -55,6 +55,7 @@ class MyProvider extends Component {
     this.getQuote = this.getQuote.bind(this);
   }
 
+
   // get data on a single ticker
   getData = async => {
     let query = this.state.value;
@@ -164,7 +165,6 @@ class MyProvider extends Component {
       .then(data => this.setState({ universe: data }));
   };
 
-
   addOneDayData = data => {
     let OneDayPrices = [];
     let OneDayDates = [];
@@ -180,7 +180,7 @@ class MyProvider extends Component {
 
   // add SPY data to state
   addSPYData = data => {
-    this.setState({ SPYData: data })
+    this.setState({ SPYData: data });
     let prices = [];
 
     for (let i = 0; i < data.chart.length; i++) {
@@ -311,7 +311,6 @@ class MyProvider extends Component {
     } else {
       this.setChartLength(filteredDates, false);
     }
-
   };
 
   setChartLength = (dates, OneDayGraph) => {
@@ -405,6 +404,7 @@ class App extends Component {
                 />
                 <Header />
                 <DataWell />
+                { !context.state.dataDisplayed ? <img src="shroombergWallpaper.png" className="wallpaper" /> : null }
                 <Footer />
               </div>
             </Fade>
