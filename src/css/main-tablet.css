@@ -63,11 +63,11 @@
     .search {
         margin: 0;
         text-align: center;
-        height: 5vmax;
+        height: 7vmax;
         width: 50vw;
         z-index: 2;
         font-size: 2em;
-        padding: 0;
+        padding: 1vmax;
         margin-left: 2vw;
         margin-right: auto;
         font-weight: bold;
@@ -83,10 +83,10 @@
         margin-bottom: 0rem;
         text-align: center;
         width: 15vw;
-        height: 5vmax;
+        height: 7vmax;
         z-index: 2;
         font-size: 1.75em;
-        padding: 0;
+        padding: 1vmax;
         margin-left: auto;
         margin-right: auto;
         font-weight: bold;
@@ -363,7 +363,7 @@
         height: 5vh;
         text-align: center;
         z-index: 1;
-        margin-top: 1vh;
+        margin-top: 1vmax;
         display: grid;
         justify-content: center;
         align-items: center;
