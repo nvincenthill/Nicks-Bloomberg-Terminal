@@ -44,6 +44,15 @@ class Info extends React.Component {
                     )}%
                   </h4>
                 </div>
+                
+                <p className="quote-mrkcap">
+                  Market Capitalization:{" "}
+                  <b>
+                    ${(
+                      context.state.currentQuote.marketCap / 1000000000
+                    ).toFixed(2)}B
+                  </b>
+                </p>
                 <p className="quote-latest">
                   As of the {context.state.currentQuote.latestTime}{" "}
                   {context.state.currentQuote.latestSource}
@@ -57,14 +66,6 @@ class Info extends React.Component {
                   {context.state.currentCompany
                     ? context.state.currentCompany.sector
                     : null}
-                </p>
-                <p className="quote-mrkcap">
-                  Market Capitalization:{" "}
-                  <b>
-                    ${(
-                      context.state.currentQuote.marketCap / 1000000000
-                    ).toFixed(2)}B
-                  </b>
                 </p>
 
                 {/* <p className="quote-mrkcap">

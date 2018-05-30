@@ -6,6 +6,7 @@ import GithubCorner from "react-github-corner";
 import Header from "./Header";
 import Footer from "./Footer";
 import DataWell from "./DataWell";
+import Wallpaper from "./Wallpaper";
 import { Fade } from "react-reveal";
 import datejs from "datejs";
 
@@ -54,7 +55,6 @@ class MyProvider extends Component {
     // this.updateQuote = this.updateQuote.bind(this);
     this.getQuote = this.getQuote.bind(this);
   }
-
 
   // get data on a single ticker
   getData = async => {
@@ -404,7 +404,7 @@ class App extends Component {
                 />
                 <Header />
                 <DataWell />
-                { !context.state.dataDisplayed ? <img src="shroombergWallpaper.png" className="wallpaper" /> : null }
+                <Wallpaper />
                 <Footer />
               </div>
             </Fade>

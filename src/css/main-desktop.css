@@ -42,7 +42,7 @@
         display: grid;
         justify-content: center;
         align-items: center;
-        grid-template-columns: [first-col] 33% [second-col] 33% [third-col] 33% [end];
+        grid-template-columns: [first-col] 2fr [second-col] 1fr [third-col] 3fr [fourth-col] 1fr [fifth-col] 2fr [end];
         grid-template-rows: 1fr [end];
     }
 
@@ -75,18 +75,17 @@
         z-index: 2;
         font-size: 2em;
         padding: 0;
-        margin-left: auto;
-        margin-right: auto;
 
-        grid-column-start: second-col;
-        grid-column-end: third-col;
+        grid-column-start: third-col;
+        grid-column-end: fourth-col;
         grid-row-start: first-rw;
         grid-row-end: end;
     }
 
     .submit-button {
-        margin-left: 6vw;
-        margin-bottom: 0rem;
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 0;
         text-align: center;
         width: 15vw;
         height: 5vh;
@@ -95,7 +94,7 @@
         padding: 0;
         font-weight: bold;
 
-        grid-column-start: third-col;
+        grid-column-start: fifth-col;
         grid-column-end: end;
         grid-row-start: first-rw;
         grid-row-end: end;
@@ -280,21 +279,21 @@
     }
 
     .quote-mrkcap {
-        margin-top: 0rem;
-        margin-bottom: 0rem;
+        margin-top: 0;
+        margin-bottom: 0;
         font-size: 1.25em;
         color: var(--color2);
     }
 
     .quote-peratio {
-        margin-top: 0rem;
-        margin-bottom: 0rem;
+        margin-top: 0;
+        margin-bottom: 0;
         color: var(--color2);
     }
 
     .quote-latest {
-        margin-top: 0rem;
-        margin-bottom: 1vh;
+        margin-top: 0;
+        margin-bottom: 0;
         color: var(--color2);
         opacity: 0.8;
     }
@@ -303,12 +302,14 @@
         margin-top: 0rem;
         margin-bottom: 1vh;
         color: var(--color2);
+        opacity: 0.8;
     }
 
     .quote-exchange {
         margin-top: 0rem;
         margin-bottom: 0vh;
         color: var(--color2);
+        opacity: 0.8;
     }
 
     .quote-description {
