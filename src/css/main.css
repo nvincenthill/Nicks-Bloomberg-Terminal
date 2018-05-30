@@ -43,7 +43,7 @@ body {
   color: var(--color2);
   margin-bottom: 0;
   margin-top: 0;
-  padding: 2rem 0;
+  padding: 1rem 0;
   display: grid;
   justify-content: center;
   align-items: center;
@@ -89,10 +89,10 @@ ul {
 
 .search {
   margin-top: 2vh;
-  margin-bottom: 2vh;
+  margin-bottom: 0;
   text-align: center;
   /*width: 100%;*/
-  height: 5vh;
+  height: 5vmax;
   /*width: 80vw;*/
   z-index: 2;
   font-size: 1.75em;
@@ -105,8 +105,8 @@ ul {
 
 .submit-button {
   margin-bottom: 4vh;
-  margin-left: 2vh;
-  margin-right: 2vh;
+  margin-left: 25vw;
+  margin-right: 25vw;
   text-align: center;
   /*width: 20%;*/
   /*height: 5vh;*/
@@ -155,11 +155,13 @@ ul {
   border-style: dotted;*/
   justify-content: center;
   align-items: center;
+  align-self: center;
 
   padding-left: 2rem;
   padding-right: 2rem;
-  padding-top: 0rem;
+  padding-top: 2rem;
   padding-bottom: 0rem;
+  border-top: 5px solid var(--color2);
 }
 
 .quote-ticker {
@@ -231,11 +233,12 @@ ul {
 }
 
 .quote-summary {
+  border-top: 5px solid var(--color2);
   grid-column-start: first-col;
   grid-column-end: end;
   grid-row-start: second-rw;
   grid-row-end: third-rw;
-
+  align-self: center;
   padding-right: 2rem;
   padding-left: 2rem;
   padding-top: 2rem;
@@ -287,14 +290,15 @@ ul {
 }
 
 .quote-stats {
+  border-top: 5px solid var(--color2);
   grid-column-start: first-col;
   grid-column-end: end;
   grid-row-start: third-rw;
   grid-row-end: fourth-rw;
-
+  align-self: center;
   padding-right: 2rem;
   padding-left: 2rem;
-  padding-top: 0rem;
+  padding-top: 2rem;
   padding-bottom: 0rem;
 
   text-align: center;
@@ -340,6 +344,7 @@ ul {
 }
 
 .quote-news {
+  border-top: 5px solid var(--color2);
   grid-column-start: first-col;
   grid-column-end: end;
   grid-row-start: fourth-rw;
@@ -347,8 +352,8 @@ ul {
 
   padding-left: 2rem;
   padding-right: 2rem;
-  padding-top: 0rem;
-  padding-bottom: 0rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 
   font-size: 0.85em;
 }
@@ -374,7 +379,6 @@ ul {
 }
 
 .quote-subtitle {
-  border-top: 5px solid var(--color2);
   color: var(--color2);
   font-weight: bold;
   margin-bottom: 1vh;
@@ -393,7 +397,7 @@ ul {
 .footer {
   width: 100%;
   height: 5vh;
-  margin-top: 2vh;
+  margin-top: 2vmax;
   text-align: center;
   z-index: 1;
 
@@ -412,6 +416,10 @@ ul {
 
   align-items: center;
   margin-bottom: 0;
+}
+
+.footer-IEX {
+  display: block;
 }
 
 a:link {
@@ -455,10 +463,10 @@ a:hover {
 }
 
 .btn-success:focus {
-  background: var(--color1);
-  border-color: var(--color3);
-  color: var(--color3);
+  color: var(--color1);
+  background: var(--color3);
   outline: none;
+  border-color: var(--color3);
 }
 
 input {

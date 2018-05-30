@@ -131,6 +131,8 @@
         grid-row-start: first-rw;
         grid-row-end: second-rw;
         text-align: left;
+        align-self: auto;
+        border-width: 0;
         /*  border-color: #5F5F5F;
       border-width: 1px;
       border-style: dotted;*/
@@ -214,6 +216,8 @@
     }
 
     .quote-summary {
+        align-self: auto;
+        border-width: 0;
       grid-column-start: first-col;
       grid-column-end: second-col;
       grid-row-start: second-rw;
@@ -270,6 +274,8 @@
     }
 
     .quote-stats {
+        align-self: auto;
+        border-width: 0;
         display: none;
     }
 
@@ -312,6 +318,8 @@
     }
 
     .quote-news {
+        align-self: auto;
+        border-width: 0;
         display: none;
     }
 
@@ -351,6 +359,7 @@
 
     .footer {
         width: 100%;
+        margin-top: 2vmax;
         height: 5vh;
         text-align: center;
         z-index: 1;
