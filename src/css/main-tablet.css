@@ -63,7 +63,7 @@
     .search {
         margin: 0;
         text-align: center;
-        height: 5vh;
+        height: 5vmax;
         width: 50vw;
         z-index: 2;
         font-size: 2em;
@@ -83,7 +83,7 @@
         margin-bottom: 0rem;
         text-align: center;
         width: 15vw;
-        height: 5vh;
+        height: 5vmax;
         z-index: 2;
         font-size: 1.75em;
         padding: 0;
