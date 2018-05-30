@@ -393,7 +393,8 @@ class App extends Component {
       <MyProvider>
         <MyContext.Consumer>
           {context => (
-            <Fade>
+
+              <Fade>
               <div className="App">
                 <GithubCorner
                   href="https://github.com/nvincenthill/stock-quote-app"

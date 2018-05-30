@@ -20,11 +20,10 @@ class News extends React.Component {
                     : null
                 }
               >
-                <li className="quote-news-title">
-                  {context.state.currentQuote.latestPrice
-                    ? context.state.currentNews[0].headline
-                    : null}
-                </li>
+              {context.state.currentQuote.latestPrice ?
+                <li className="quote-news-title"> {context.state.currentNews[0].headline + " | "}
+                <span className="source">{context.state.currentNews[0].source}</span> 
+                </li> : null } 
               </a>
               <a
                 href={
@@ -33,11 +32,10 @@ class News extends React.Component {
                     : null
                 }
               >
-                <li className="quote-news-title">
-                  {context.state.currentQuote.latestPrice
-                    ? context.state.currentNews[1].headline
-                    : null}
-                </li>
+              {context.state.currentQuote.latestPrice ?
+                <li className="quote-news-title"> {context.state.currentNews[1].headline + " | "}
+                <span className="source">{context.state.currentNews[1].source}</span> 
+                </li> : null } 
               </a>
               <a
                 href={
@@ -46,11 +44,10 @@ class News extends React.Component {
                     : null
                 }
               >
-                <li className="quote-news-title">
-                  {context.state.currentQuote.latestPrice
-                    ? context.state.currentNews[2].headline
-                    : null}
-                </li>
+              {context.state.currentQuote.latestPrice ?
+                <li className="quote-news-title"> {context.state.currentNews[2].headline + " | "}
+                <span className="source">{context.state.currentNews[2].source}</span> 
+                </li> : null } 
               </a>
               <a
                 href={
@@ -59,11 +56,10 @@ class News extends React.Component {
                     : null
                 }
               >
-                <li className="quote-news-title">
-                  {context.state.currentQuote.latestPrice
-                    ? context.state.currentNews[3].headline
-                    : null}
-                </li>
+              {context.state.currentQuote.latestPrice ?
+                <li className="quote-news-title"> {context.state.currentNews[3].headline + " | "}
+                <span className="source">{context.state.currentNews[3].source}</span> 
+                </li> : null } 
               </a>
               <a
                 href={
@@ -72,11 +68,10 @@ class News extends React.Component {
                     : null
                 }
               >
-                <li className="quote-news-title">
-                  {context.state.currentQuote.latestPrice
-                    ? context.state.currentNews[4].headline
-                    : null}
-                </li>
+              {context.state.currentQuote.latestPrice ?
+                <li className="quote-news-title"> {context.state.currentNews[4].headline + " | "}
+                <span className="source">{context.state.currentNews[4].source}</span> 
+                </li> : null } 
               </a>
               <a
                 href={
@@ -85,11 +80,10 @@ class News extends React.Component {
                     : null
                 }
               >
-                <li className="quote-news-title">
-                  {context.state.currentQuote.latestPrice
-                    ? context.state.currentNews[5].headline
-                    : null}
-                </li>
+              {context.state.currentQuote.latestPrice ?
+                <li className="quote-news-title"> {context.state.currentNews[5].headline + " | "}
+                <span className="source">{context.state.currentNews[5].source}</span> 
+                </li> : null } 
               </a>
             </ul>
           </div>

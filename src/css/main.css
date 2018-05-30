@@ -135,10 +135,10 @@ ul {
   grid-template-rows: [first-rw] 1fr [second-rw] 1fr [third-rw] 1fr [fourth-rw] 1fr [end];
   margin-bottom: 0;
   margin-top: 0;
-  padding-left: 0rem;
-  padding-right: 0rem;
-  padding-top: 0rem;
-  padding-bottom: 0rem;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
+  padding-bottom: 0;
   border-width: 0;
   background: #222;
   border-radius: 0;
@@ -367,6 +367,10 @@ ul {
   transition: 0.25s ease-in;
   transform: translateX(-5%);
   color: #f39f41;
+}
+
+.source {
+  color: var(--color2);
 }
 
 .quote-subtitle {
