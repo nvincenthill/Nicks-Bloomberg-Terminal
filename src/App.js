@@ -363,6 +363,11 @@ class MyProvider extends Component {
     this.getSPYData();
   }
 
+  // call on window resized
+  componentDidMount() {
+    window.addEventListener("resize", () => this.forceUpdate());
+  }
+
   // render context provider component
   render() {
     return (
