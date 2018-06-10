@@ -8,6 +8,7 @@ class News extends React.Component {
   componentWillUnmount() {}
   
     //TO DO Refactor with iterator and variable
+        // handle HTML apostrophies and special characters
   render() {
     return (
       <MyContext.Consumer>
