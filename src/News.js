@@ -10,6 +10,13 @@ class News extends React.Component {
     //TO DO Refactor with iterator and variable
         // handle HTML apostrophies and special characters
   render() {
+    const numbers = [0, 1, 2, 3, 4];
+    let newsItems = numbers.map((number) =>
+      context.state.currentQuote.latestPrice ?
+        <li className="quote-news-title"> {context.state.currentNews[numbers].headline + " | "}
+          <span className="source">{context.state.currentNews[numbers].source}</span> 
+        </li> : null 
+    );
     return (
       <MyContext.Consumer>
         {context => (
