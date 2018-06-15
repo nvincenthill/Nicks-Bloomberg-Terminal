@@ -35,16 +35,14 @@ class Info extends React.Component {
                         : "quote-dodchg red-text"
                     }
                   >
-                    {context.state.currentQuote.changePercent >= 0
-                      ? "+"
-                      : ""}
+                    {context.state.currentQuote.changePercent >= 0 ? "+" : ""}
                     {context.state.currentQuote.change.toFixed(2)}{" "}
                     {(context.state.currentQuote.changePercent * 100).toFixed(
                       2
                     )}%
                   </h4>
                 </div>
-                
+
                 <p className="quote-mrkcap">
                   Market Capitalization:{" "}
                   <b>
@@ -67,18 +65,6 @@ class Info extends React.Component {
                     ? context.state.currentCompany.sector
                     : null}
                 </p>
-
-                {/* <p className="quote-mrkcap">
-                  52 Week High: ${context.state.currentQuote.week52High.toFixed(
-                    2
-                  )}
-                </p>
-
-                <p className="quote-mrkcap">
-                  52 Week Low: ${context.state.currentQuote.week52Low.toFixed(
-                    2
-                  )}
-                </p> */}
               </div>
             ) : null}
           </React.Fragment>

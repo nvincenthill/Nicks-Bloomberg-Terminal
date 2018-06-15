@@ -25,9 +25,9 @@ class Chart extends Component {
     let chartTitle = `${this.props.name} stock ${
       gainedOrLost > 0 ? "gained" : "lost"
     } ${Math.abs(
-      (this.props.chartDataPrices[this.props.chartDataPrices.length - 1] -
+      ((this.props.chartDataPrices[this.props.chartDataPrices.length - 1] -
         this.props.chartDataPrices[0]) *
-        100 /
+        100) /
         this.props.chartDataPrices[0]
     ).toFixed(2)}% ${date}*`;
 
@@ -84,7 +84,7 @@ class Chart extends Component {
           {
             id: "test",
             display: false,
-            position: 'left',
+            position: "left",
             gridLines: {
               color: "#F39F41"
             },
@@ -112,7 +112,7 @@ class Chart extends Component {
       labels: this.props.chartDataDates,
       datasets: [
         {
-          yAxisID: 'stock',
+          yAxisID: "stock",
           label: this.props.name,
           fill: "origin",
           lineTension: 0.1,

@@ -14,18 +14,21 @@ class Input extends React.Component {
       <MyContext.Consumer>
         {context => (
           <React.Fragment>
-                <input
-                  type="text"
-                  className={context.state.inputClass}
-                  placeholder={context.state.placeholder}
-                  onChange={context.handleChange}
-                  onClick={context.clearPlaceholder}
-                  onKeyPress={context.handleKeyPress}
-                  value={context.state.value}
-                />
-              <Button className="btn-success submit-button" onClick={context.handleSubmit}>
-                {context.state.buttonText}
-              </Button>
+            <input
+              type="text"
+              className={context.state.inputClass}
+              placeholder={context.state.placeholder}
+              onChange={context.handleChange}
+              onClick={context.clearPlaceholder}
+              onKeyPress={context.handleKeyPress}
+              value={context.state.value}
+            />
+            <Button
+              className="btn-success submit-button"
+              onClick={context.handleSubmit}
+            >
+              {context.state.buttonText}
+            </Button>
           </React.Fragment>
         )}
       </MyContext.Consumer>

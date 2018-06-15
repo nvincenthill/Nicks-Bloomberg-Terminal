@@ -2,15 +2,11 @@ import React from "react";
 import { MyContext } from "./App.js";
 
 class News extends React.Component {
-  componentWillMount() {}
-  componentDidMount() {}
-  componentDidUpdate() {}
-  componentWillUnmount() {}
-
-  //TO DO Refactor with iterator and variable
-  // handle HTML apostrophies and special characters
+  // TODO handle HTML apostrophies and special characters
   render() {
+    // number of news stories
     const numbers = [0, 1, 2, 3];
+    // create news items
     let newsItems = numbers.map(number => (
       <MyContext.Consumer>
         {context =>
@@ -32,9 +28,7 @@ class News extends React.Component {
             {context.state.currentQuote.latestPrice ? (
               <React.Fragment>
                 <h2 className="quote-subtitle">NEWS</h2>
-                <ul className="quote-news-list">
-                  {newsItems}
-                </ul>
+                <ul className="quote-news-list">{newsItems}</ul>
               </React.Fragment>
             ) : null}
           </div>

@@ -34,7 +34,6 @@ class Stats extends React.Component {
                 </p>
               </div>
             ) : null}
-
           </div>
         )}
       </MyContext.Consumer>

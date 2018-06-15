@@ -390,14 +390,14 @@ class MyProvider extends Component {
   }
 }
 
+// create App component
 class App extends Component {
   render() {
     return (
       <MyProvider>
         <MyContext.Consumer>
           {context => (
-
-              <Fade>
+            <Fade>
               <div className="App">
                 <GithubCorner
                   href="https://github.com/nvincenthill/stock-quote-app"

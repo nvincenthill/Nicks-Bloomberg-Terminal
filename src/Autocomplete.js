@@ -34,7 +34,6 @@ class Autocomplete extends React.Component {
                   ? context.state.matchArray[3].name
                   : null}
               </li>
-
             </ul>
           </div>
         )}

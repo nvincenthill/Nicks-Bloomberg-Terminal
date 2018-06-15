@@ -20,30 +20,27 @@ class DataWell extends React.Component {
       <MyContext.Consumer>
         {context => (
           <React.Fragment>
-          <Collapse isOpened={context.state.dataDisplayed}>
-          <div className="quote-container">
-            
-              <Info />
-              <div className="quote-chart">
-                <Chart
-                  chartDataPrices={context.state.chartDataPrices}
-                  chartDataSPYPrices={context.state.SPYPrices}
-                  chartDataDates={context.state.chartDataDates}
-                  symbol={context.state.currentQuote.symbol}
-                  name={context.state.currentQuote.companyName}
-                  chartShouldRedraw={context.state.chartShouldRedraw}
-                  currentChartButton={context.state.currentChartButton}
-                  setRedraw={context.state.setRedraw}
-                />
+            <Collapse isOpened={context.state.dataDisplayed}>
+              <div className="quote-container">
+                <Info />
+                <div className="quote-chart">
+                  <Chart
+                    chartDataPrices={context.state.chartDataPrices}
+                    chartDataSPYPrices={context.state.SPYPrices}
+                    chartDataDates={context.state.chartDataDates}
+                    symbol={context.state.currentQuote.symbol}
+                    name={context.state.currentQuote.companyName}
+                    chartShouldRedraw={context.state.chartShouldRedraw}
+                    currentChartButton={context.state.currentChartButton}
+                    setRedraw={context.state.setRedraw}
+                  />
+                </div>
+                <Stats />
+                <Summary />
+                <Performance />
+                <News />
               </div>
-              <Stats />
-              <Summary />
-              <Performance />
-              <News />
-
-
-          </div>
-          </Collapse>
+            </Collapse>
           </React.Fragment>
         )}
       </MyContext.Consumer>
