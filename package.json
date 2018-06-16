@@ -1,6 +1,6 @@
 {
-  "name": "stockquoteapp",
-  "version": "0.1.0",
+  "name": "Nick's Bloomberg Terminal",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "chart.js": "^2.7.2",
