@@ -8,7 +8,7 @@ class News extends React.Component {
     const numbers = [0, 1, 2, 3];
     // create news items
     let newsItems = numbers.map(number => (
-      <MyContext.Consumer>
+      <MyContext.Consumer key={number}>
         {context =>
           context.state.currentQuote.latestPrice ? (
             <li className="quote-news-title">
