@@ -17,7 +17,7 @@ class Wallpaper extends React.Component {
             isOpened={!context.state.dataDisplayed}
             forceInitialAnimation={true}
           >
-            <img src="shroombergWallpaper.png" className="wallpaper" />
+            <img src="shroombergWallpaper.png" alt="did not load" className="wallpaper" />
           </Collapse>
         )}
       </MyContext.Consumer>
