@@ -1,6 +1,6 @@
 # Portfolio
 
-This is a Yahoo finance equity quote app fed by live market data provided by IEX.
+This is a Yahoo finance/Bloomberg stock quote app clone powered by data provided by IEX.
 
 ## Getting Started
 
