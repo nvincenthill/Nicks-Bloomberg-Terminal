@@ -1,4 +1,4 @@
-# Portfolio
+# Nicks-Bloomberg-Terminal
 
 This is a Yahoo finance/Bloomberg stock quote app clone powered by data provided by IEX.
 
