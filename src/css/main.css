@@ -8,7 +8,7 @@ html {
   overflow-y: scroll;
   overflow-x: hidden;
   font-size: 62.5%;
-  --main-font: "";
+  --main-font: '';
   --color1: #222;
   --color2: #eeeeee;
   --color3: #f39f41;
@@ -27,12 +27,12 @@ body {
 
 .App {
   text-align: center;
-  min-height: 100%;
+  /* min-height: 100%; */
 }
 
 .wallpaper {
-  width:100%;
-  height:100%;
+  width: 100%;
+  height: 100%;
   /*max-height: 80vh;*/
   object-fit: cover;
   overflow: hidden;
