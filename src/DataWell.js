@@ -1,14 +1,14 @@
-import React from "react";
+import React from 'react';
 
-import Info from "./Info";
-import Chart from "./Chart";
-import Summary from "./Summary";
-import Performance from "./Performance";
-import Stats from "./Stats";
-import News from "./News";
+import Info from './Info';
+import Chart from './Chart';
+import Summary from './Summary';
+import Performance from './Performance';
+import Stats from './Stats';
+import News from './News';
 
-import { Collapse } from "react-collapse";
-import { MyContext } from "./App.js";
+import { Collapse } from 'react-collapse';
+import { MyContext } from './App.js';
 
 class DataWell extends React.Component {
   componentWillMount() {}
@@ -38,7 +38,7 @@ class DataWell extends React.Component {
                 <Stats />
                 <Summary />
                 <Performance />
-                <News />
+                {context.state.currentQuote.symbol && <News />}
               </div>
             </Collapse>
           </React.Fragment>

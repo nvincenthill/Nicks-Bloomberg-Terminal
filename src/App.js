@@ -1,12 +1,11 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import GithubCorner from "react-github-corner";
-import Header from "./Header";
-import Footer from "./Footer";
-import DataWell from "./DataWell";
-import Wallpaper from "./Wallpaper";
-import { Fade } from "react-reveal";
-import datejs from "datejs";
+import GithubCorner from 'react-github-corner';
+import Header from './Header';
+import Footer from './Footer';
+import DataWell from './DataWell';
+import Wallpaper from './Wallpaper';
+import { Fade } from 'react-reveal';
 
 // first we will make a new context
 const MyContext = React.createContext();
@@ -17,33 +16,33 @@ class MyProvider extends Component {
     super(props);
 
     this.state = {
-      title: "Shroomberg",
+      title: 'Shroomberg',
       currentQuote: {},
       chartDataPrices: [],
       chartDataDates: [],
       dataDisplayed: false,
-      value: "",
+      value: '',
       universe: [],
-      displayedStock: "AAPL",
-      buttonText: "SUBMIT",
-      inputClass: "search",
+      displayedStock: 'AAPL',
+      buttonText: 'SUBMIT',
+      inputClass: 'search',
       matchArray: [],
       autocompleteDisplayed: true,
       headerDisplayed: true,
       footerDisplayed: true,
-      placeholder: "ex. AAPL, TSLA, GE",
+      placeholder: 'ex. AAPL, TSLA, GE',
       ceoTitles: [
-        "Supreme Commander",
-        "Archduke",
-        "Baron",
-        "High Marshall",
-        "Emperor",
-        "King of Kings",
-        "Maharajadhiraja",
-        "Exhalted Shogun"
+        'Supreme Commander',
+        'Archduke',
+        'Baron',
+        'High Marshall',
+        'Emperor',
+        'King of Kings',
+        'Maharajadhiraja',
+        'Exhalted Shogun'
       ],
-      currentCEOTitle: "",
-      currentChartButton: "5Y",
+      currentCEOTitle: '',
+      currentChartButton: '5Y',
       SPYData: {},
       chartShouldRedraw: false,
       SPYPrices: []
@@ -64,7 +63,7 @@ class MyProvider extends Component {
         if (response.ok) {
           return response.json();
         } else {
-          throw new Error("Something went wrong");
+          throw new Error('Something went wrong');
         }
       })
       .then(responseJson => {
@@ -72,8 +71,8 @@ class MyProvider extends Component {
       })
       .catch(error => {
         console.log(error);
-        this.setState({ inputClass: "animated shake search red" });
-        setTimeout(() => this.setState({ inputClass: "search" }), 1000);
+        this.setState({ inputClass: 'animated shake search red' });
+        setTimeout(() => this.setState({ inputClass: 'search' }), 1000);
       });
 
     this.getQuote(query);
@@ -89,7 +88,7 @@ class MyProvider extends Component {
         if (response.ok) {
           return response.json();
         } else {
-          throw new Error("Something went wrong");
+          throw new Error('Something went wrong');
         }
       })
       .then(responseJson => {
@@ -97,8 +96,8 @@ class MyProvider extends Component {
       })
       .catch(error => {
         console.log(error);
-        this.setState({ inputClass: "animated shake search red" });
-        setTimeout(() => this.setState({ inputClass: "search" }), 1000);
+        this.setState({ inputClass: 'animated shake search red' });
+        setTimeout(() => this.setState({ inputClass: 'search' }), 1000);
       });
 
     this.getQuote(query);
@@ -122,7 +121,7 @@ class MyProvider extends Component {
         if (response.ok) {
           return response.json();
         } else {
-          throw new Error("Something went wrong");
+          throw new Error('Something went wrong');
         }
       })
       .then(responseJson => {
@@ -136,7 +135,7 @@ class MyProvider extends Component {
 
   // get data on a the S&P500
   getSPYData = async => {
-    let query = "SPY";
+    let query = 'SPY';
     let endpoint = `https://api.iextrading.com/1.0/stock/${query}/batch?types=stats,quote,chart&range=5y`;
 
     fetch(endpoint)
@@ -144,7 +143,7 @@ class MyProvider extends Component {
         if (response.ok) {
           return response.json();
         } else {
-          throw new Error("Something went wrong");
+          throw new Error('Something went wrong');
         }
       })
       .then(responseJson => {
@@ -157,7 +156,7 @@ class MyProvider extends Component {
 
   // get universe of options from IEX
   getUniverse = async => {
-    let endpoint = "https://api.iextrading.com/1.0/ref-data/symbols";
+    let endpoint = 'https://api.iextrading.com/1.0/ref-data/symbols';
     fetch(endpoint)
       .then(response => response.json())
       .then(data => this.setState({ universe: data }));
@@ -167,7 +166,7 @@ class MyProvider extends Component {
     let OneDayPrices = [];
     let OneDayDates = [];
     for (let i = 0; i < data.chart.length; i++) {
-      let time = data.chart[i].label + " " + data.chart[i].date;
+      let time = data.chart[i].label + ' ' + data.chart[i].date;
       let formattedTime = Date.parse(time);
       OneDayPrices.push(data.chart[i].close);
       OneDayDates.push(formattedTime);
@@ -209,7 +208,7 @@ class MyProvider extends Component {
       dataDisplayed: true,
       autocompleteDisplayed: false,
       headerDisplayed: true,
-      buttonText: "UPDATE",
+      buttonText: 'UPDATE',
       footerDisplayed: true,
       ChartData: data.chart,
       chartDataPrices: prices,
@@ -229,7 +228,7 @@ class MyProvider extends Component {
     return stocks.filter(stock => {
       let result = [];
       // here we need to figure out if the name or ticker matches what was searched
-      const regex = new RegExp(wordToMatch, "gi");
+      const regex = new RegExp(wordToMatch, 'gi');
       result = stock.symbol.match(regex) || stock.name.match(regex);
       return result;
     });
@@ -253,12 +252,12 @@ class MyProvider extends Component {
   handleSubmit = () => {
     this.getData();
     this.getOneDayChartData();
-    this.setState({ currentChartButton: "5Y" });
+    this.setState({ currentChartButton: '5Y' });
   };
 
   // handle a key pressed and submit if "enter" is pressed
   handleKeyPress = event => {
-    if (event.key === "Enter") {
+    if (event.key === 'Enter') {
       this.handleSubmit();
     }
   };
@@ -283,17 +282,17 @@ class MyProvider extends Component {
 
     // filter array for required range
     let startDate;
-    if (range === "5Y") {
+    if (range === '5Y') {
       startDate = (5).years().ago();
-    } else if (range === "1Y") {
+    } else if (range === '1Y') {
       startDate = (1).years().ago();
-    } else if (range === "1M") {
+    } else if (range === '1M') {
       startDate = (1).months().ago();
-    } else if (range === "MTD") {
+    } else if (range === 'MTD') {
       startDate = new Date(today.getFullYear(), today.getMonth(), 1);
-    } else if (range === "YTD") {
-      startDate = Date.parse("Last December 31");
-    } else if (range === "1D") {
+    } else if (range === 'YTD') {
+      startDate = Date.parse('Last December 31');
+    } else if (range === '1D') {
       startDate = (1).days().ago();
     }
 
@@ -304,7 +303,7 @@ class MyProvider extends Component {
       }
     }
 
-    if (range === "1D") {
+    if (range === '1D') {
       this.setChartLength(this.state.OneDayDates, true);
     } else {
       this.setChartLength(filteredDates, false);
@@ -332,9 +331,9 @@ class MyProvider extends Component {
 
     return [
       date.getFullYear(),
-      (mm > 9 ? "" : "0") + mm,
-      (dd > 9 ? "" : "0") + dd
-    ].join("-");
+      (mm > 9 ? '' : '0') + mm,
+      (dd > 9 ? '' : '0') + dd
+    ].join('-');
   };
 
   // clear placeholder
@@ -347,7 +346,7 @@ class MyProvider extends Component {
   handleClick = () => {
     if (this.state.dataDisplayed === true) {
       this.setState({ dataDisplayed: false });
-      this.setState({ buttonText: "SUBMIT" });
+      this.setState({ buttonText: 'SUBMIT' });
     }
   };
 
@@ -365,7 +364,7 @@ class MyProvider extends Component {
 
   // call on window resized
   componentDidMount() {
-    window.addEventListener("resize", () => this.forceUpdate());
+    window.addEventListener('resize', () => this.forceUpdate());
   }
 
   // render context provider component
